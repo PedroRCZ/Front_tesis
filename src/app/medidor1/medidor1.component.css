@@ -1,0 +1,47 @@
+div{
+    display: flex;
+  }
+
+  .seccion-uno{
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .seccion-dos{
+    width: 100%;
+    justify-content: space-around;
+  }
+
+    .seccion-dos div{
+      width: 100%;
+    }
+
+    .seccion-dos div iframe{
+      width: 90%;
+    }
+
+  .seccion-tres{
+    width: 100%;
+    justify-content: space-around;
+  }
+
+    .seccion-tres div{
+      width: 100%;
+    }
+
+    .seccion-tres div iframe{
+      width: 90%;
+    }
+
+  .seccion-cuatro{
+    width: 100%;
+    justify-content: center;
+  }
+    .seccion-cuatro div{
+      width: 100%;
+    }
+
+    .seccion-cuatro div iframe{
+      width: 100%;
+      padding: 0% 5%;
+    }

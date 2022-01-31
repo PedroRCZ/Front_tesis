@@ -1,0 +1,51 @@
+<div class="seccion-uno">
+  <div class="kw">
+    <p>{{ kw | number: '.1-2' }}</p>
+  </div>
+  <div class="precio-kw">
+    <p>{{ kwPrecio | number: '.1-2' }}</p>
+  </div>
+  <div class="ocupación">
+    <p>{{ ocupacion }}</p>
+  </div>
+</div>
+
+<h2>Otro</h2>
+
+<div class="seccion-dos">
+  <div class="superficie">
+    <p>{{ superficie }}</p>
+  </div>
+  <div class="kw-superficie">
+    <p>{{ kw_m2 }}</p>
+  </div>
+</div>
+
+<h2>Otro</h2>
+
+<div class="seccion-tres">
+
+  <div class="voltaje" width="400" height="400">
+    <div #chart>
+      <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+    </div>
+  </div>
+
+  <div class="intencidad">
+    <div #chartIntecidad>
+      <plotly-plot [data]="graphIntesidad.data" [layout]="graphIntesidad.layout"></plotly-plot>
+    </div>
+  </div>
+</div>
+
+<h2>Otro</h2>
+
+<div  class="seccion-cuatro" >
+  <div>
+    <div #chartPotencia>
+      <plotly-plot [data]="graphPotencia.data" [layout]="graphPotencia.layout"></plotly-plot>
+    </div>
+  </div>
+</div>
+
+
