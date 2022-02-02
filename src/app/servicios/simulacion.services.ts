@@ -15,4 +15,8 @@ export class SimulacionServices{
     return this.http.get(this.url + "simular/" + id);
   }
 
+  DatosSimulacion(id: string): Observable <any>{
+    return this.http.get(this.url + "simular/datos/" + id);
+  }
+
 }

@@ -9,6 +9,7 @@ import { Medidor1Component } from './medidor1/medidor1.component';
 import { Medidor2Component } from './medidor2/medidor2.component';
 import { Medidor3Component } from './medidor3/medidor3.component';
 import { MesComponent } from './mes/mes.component';
+import { SimulacionListComponent } from './modulos/simulacion-list/simulacion-list.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'medidores/medidor4/dia/:id', component:DiaComponent},
   {path: 'medidores/medidor4/mes/:id', component:MesComponent},
   {path: 'medidores/medidor4/anio/:id', component:AnioComponent},
+  {path: 'medidores/simulacion', component:SimulacionListComponent},
 ];
 
 @NgModule({

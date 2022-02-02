@@ -20,6 +20,8 @@ import { PlotlyModule } from 'angular-plotly.js';
 import { MesComponent } from './mes/mes.component';
 import { AnioComponent } from './anio/anio.component';
 import { MenuTiempoComponent } from './modulos/menu-tiempo/menu-tiempo.component';
+import { SimulacionFormComponent } from './modulos/simulacion-form/simulacion-form.component';
+import { SimulacionListComponent } from './modulos/simulacion-list/simulacion-list.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -34,7 +36,9 @@ PlotlyModule.plotlyjs = PlotlyJS;
     DiaComponent,
     MesComponent,
     AnioComponent,
-    MenuTiempoComponent
+    MenuTiempoComponent,
+    SimulacionFormComponent,
+    SimulacionListComponent
   ],
   imports: [
     BrowserModule,
