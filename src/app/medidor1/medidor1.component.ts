@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-medidor1',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Medidor1Component implements OnInit {
 
-  constructor() { }
+  constructor(
+
+    ) { }
 
   ngOnInit(): void {
   }

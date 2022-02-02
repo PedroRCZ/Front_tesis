@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Medidor } from '../models/medidor.model';
+import { FechaServices } from '../servicios/fecha.services';
 import { MedidorServices } from '../servicios/medidor-dia.services';
 
 
@@ -26,23 +28,62 @@ export class AnioComponent implements OnInit {
   graphIntesidad: any = [];
   graphPotencia: any = [];
 
-  constructor(
-    private _medidorService: MedidorServices
-    ) {
+  piso: number;
+  pisoMostrar: string;
 
+  anioSelec: string  = '2021';
+  anio = [{to_char: 2021},{to_char: 2022}];
+
+  constructor(
+    private _medidorService: MedidorServices,
+    private _fechaServices: FechaServices,
+    private route: ActivatedRoute) {
      }
 
   ngOnInit(): void {
 
-    this.mostrarKw();// ver si se mopdifia
-    this.mostrarOcupacion();// ver si se mopdifia
-
-
-    this.getMedidorAnio();// chart.js
+    this.piso = this.route.snapshot.params['id'];
+    this.mostrarFecha();
+    this.pisoSelect()
+    this.mostrarKw(this.anioSelec);
+    this.mostrarOcupacion(this.anioSelec);
+    this.getMedidorAnio(this.anioSelec);
   }
 
-  mostrarKw(){
-    this._medidorService.getMedidorDiakw("2022-01-01n2022-01-31n1").subscribe(data => {
+  fechaEscogida(){
+    this.graph = [];
+    this.graphIntesidad= [];
+    this.graphPotencia = [];
+    this.mostrarKw(this.anioSelec);
+    this.mostrarOcupacion(this.anioSelec);
+    this.getMedidorAnio(this.anioSelec);
+  }
+
+
+  mostrarFecha(){
+    this._fechaServices.getFechasAnio(this.piso+"").subscribe(data => {
+      if(Object.keys(data).length === 0){
+        console.log("no datos");
+      }else{
+        this.anio = data;
+        console.log(this.anio)
+      }
+    })
+  }
+
+  pisoSelect(){
+    if(this.piso == 1){
+      this.pisoMostrar = "Medidor General"
+    }
+    else if(this.piso == 4){
+      this.pisoMostrar = "Piso 1"
+    }else{
+      this.pisoMostrar = "Piso " + this.piso
+    }
+  }
+
+  mostrarKw(fecha: string){
+    this._medidorService.getMedidorAnioDatos(fecha+"-01-01n"+fecha+"-12-31n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -55,8 +96,8 @@ export class AnioComponent implements OnInit {
     })
   }
 
-  mostrarOcupacion(){  //quizas un promedio
-    this._medidorService.getMedidorDiaOcupacion("2022-01-01n2022-01-31n1").subscribe(data => {
+  mostrarOcupacion(fecha: string){  //quizas un promedio
+    this._medidorService.getMedidorAnioOcupacion(fecha+"-01-01n"+fecha+"-12-31n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -68,7 +109,7 @@ export class AnioComponent implements OnInit {
   }
 
   mostrarSuperficie(){
-    this._medidorService.getMedidorDiaSuperficie("1").subscribe(data => {
+    this._medidorService.getMedidorDiaSuperficie(""+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -81,8 +122,8 @@ export class AnioComponent implements OnInit {
   }
 
 
-  getMedidorAnio(){//fecha
-    this._medidorService.getMedidorAnio("2019-01-01n2022-12-31n1").subscribe(data => {
+  getMedidorAnio(fecha: string){//fecha
+    this._medidorService.getMedidorAnio(fecha+"-01-01n"+fecha+"-12-31n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -91,12 +132,7 @@ export class AnioComponent implements OnInit {
         this.voltaje = this.listMedidor.map((listMedidor: any) => listMedidor.v3ph)
         this.intencidad = this.listMedidor.map((listMedidor: any) => listMedidor.i3ph)
         this.pf3ph = this.listMedidor.map((listMedidor: any) => listMedidor.pf3ph)
-
-        console.log(this.fecha)
-
-
         delay(300);
-
         this.graph = {
           data: [
               { x: this.fecha ,
@@ -138,9 +174,6 @@ export class AnioComponent implements OnInit {
             }*/
           }
         };
-
-
-
 
       }
     },error =>{

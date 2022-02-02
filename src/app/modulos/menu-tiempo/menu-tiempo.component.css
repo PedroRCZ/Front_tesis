@@ -1,0 +1,7 @@
+.botones {
+  display: flex;
+}
+
+.botones > p {
+  margin-left: 10px;
+}

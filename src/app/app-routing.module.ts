@@ -16,9 +16,18 @@ const routes: Routes = [
   {path: 'medidores/medidor2', component: Medidor2Component},
   {path: 'medidores/medidor3', component: Medidor3Component},
   {path: 'medidores/general', component: GeneralComponent},
-  {path: 'medidores/medidor1/dia', component:DiaComponent},
-  {path: 'medidores/medidor1/mes', component:MesComponent},
-  {path: 'medidores/medidor1/anio', component:AnioComponent},
+  {path: 'medidores/medidor/dia/:id', component:DiaComponent},
+  {path: 'medidores/medidor/mes/:id', component:MesComponent},
+  {path: 'medidores/medidor/anio/:id', component:AnioComponent},
+  {path: 'medidores/medidor2/dia/:id', component:DiaComponent},
+  {path: 'medidores/medidor2/mes/:id', component:MesComponent},
+  {path: 'medidores/medidor2/anio/:id', component:AnioComponent},
+  {path: 'medidores/medidor3/dia/:id', component:DiaComponent},
+  {path: 'medidores/medidor3/mes/:id', component:MesComponent},
+  {path: 'medidores/medidor3/anio/:id', component:AnioComponent},
+  {path: 'medidores/medidor4/dia/:id', component:DiaComponent},
+  {path: 'medidores/medidor4/mes/:id', component:MesComponent},
+  {path: 'medidores/medidor4/anio/:id', component:AnioComponent},
 ];
 
 @NgModule({

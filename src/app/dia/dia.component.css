@@ -2,46 +2,117 @@ div{
   display: flex;
 }
 
+div p{
+  font-size: 2em;
+}
+
+.titulo{
+  font-size: 1.4em;
+  font-family: bold;
+}
+
 .seccion-uno{
   width: 100%;
+  height: 10%;
   justify-content: space-between;
 }
+  .seccion-uno div {
+    flex-direction: column;
+  }
+  .seccion-uno div p{
+    justify-content: center;
+    width: 100%;
+  }
+.kw{
+  text-align: center;
+  width: 33%;
+  padding: 5%;
+}
+.precio-kw{
+  text-align: center;
+  width: 33%;
+  padding: 5%;
+}
+
+.ocupacion{
+  text-align: center;
+  width: 33%;
+  padding: 5%;
+}
+
+
 
 .seccion-dos{
   width: 100%;
+  height: 10%;
   justify-content: space-around;
 }
+  .seccion-dos div {
+    flex-direction: column;
+  }
 
-  .seccion-dos div{
+  .seccion-dos div p{
+    justify-content: center;
     width: 100%;
   }
 
-  .seccion-dos div iframe{
-    width: 90%;
+  .superficie{
+    text-align: center;
+    width: 33%;
+    padding: 5%;
   }
+
+  .kw-superficie{
+    width: 33%;
+    text-align: center;
+    padding: 5%;
+  }
+
+
 
 .seccion-tres{
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
+  padding: 0% 5%;
 }
-
   .seccion-tres div{
     width: 100%;
   }
-
-  .seccion-tres div iframe{
-    width: 90%;
+  .seccion-tres div div{
+    width: 100%;
   }
+  .seccion-tres div div plotly-plot{
+    width: 100%;
+  }
+
 
 .seccion-cuatro{
   width: 100%;
   justify-content: center;
+  padding: 0% 5%;
 }
   .seccion-cuatro div{
     width: 100%;
   }
-
-  .seccion-cuatro div iframe{
+  .seccion-cuatro div div{
     width: 100%;
-    padding: 0% 5%;
+  }
+  .seccion-cuatro div div plotly-plot{
+    width: 100%;
+  }
+
+.seccion-cinco{
+  width: 100%;
+  justify-content: center;
+  padding: 0% 5%;
+}
+  .seccion-cinco div{
+    width: 100%;
+  }
+  .seccion-cinco div div{
+    width: 100%;
+  }
+
+  .seccion-cinco div div plotly-plot{
+    width: 100%;
   }

@@ -19,6 +19,7 @@ import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { MesComponent } from './mes/mes.component';
 import { AnioComponent } from './anio/anio.component';
+import { MenuTiempoComponent } from './modulos/menu-tiempo/menu-tiempo.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -32,7 +33,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     GeneralComponent,
     DiaComponent,
     MesComponent,
-    AnioComponent
+    AnioComponent,
+    MenuTiempoComponent
   ],
   imports: [
     BrowserModule,

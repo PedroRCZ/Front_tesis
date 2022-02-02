@@ -35,4 +35,11 @@ export class MedidorServices{
     return this.http.get(this.url + "anio/" + id);
   }
 
+  getMedidorAnioDatos(id: string): Observable <any>{
+    return this.http.get(this.url + "aniodatos/" + id);
+  }
+  getMedidorAnioOcupacion(id: string): Observable <any>{
+    return this.http.get(this.url + "aniocupacion/" + id);
+  }
+
 }

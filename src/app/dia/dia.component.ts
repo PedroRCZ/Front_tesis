@@ -1,7 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { MedidorServices } from '../servicios/medidor-dia.services';
+import { FechaServices } from '../servicios/fecha.services'
 //import {Chart, registerables} from 'node_modules/chart.js'
 import { Medidor } from '../models/medidor.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -30,24 +32,54 @@ export class DiaComponent implements OnInit {
   graphIntesidad: any = [];
   graphPotencia: any = [];
 
-  constructor(
-    private _medidorService: MedidorServices
+  piso: number;
+  pisoMostrar: string;
+  fechaMax: string;
+  fechaMin: string;
+
+  constructor(private _medidorService: MedidorServices,
+              private _fechaServices: FechaServices,
+            private route: ActivatedRoute,
   ) {
     //Chart.register(...registerables);
   }
 
   ngOnInit(): void {
-    this.mostrarKw();
-    this.mostrarOcupacion();
 
-
-    this.getMedidorDia();// chart.js
+    this.piso = this.route.snapshot.params['id'];
+    this.pisoSelect()
+    this.mostrarFecha();
+    this.mostrarKw("2022-01-25");
+    this.mostrarOcupacion("2022-01-25");
+    this.getMedidorDia("2022-01-25");// chart.js
 
 
   }
 
-  mostrarKw(){
-    this._medidorService.getMedidorDiakw("2022-01-25n2022-01-26n1").subscribe(data => {
+  DateSelect : any;
+
+  fechaEscogida(){
+    this.graph = [];
+    this.graphIntesidad= [];
+    this.graphPotencia = [];
+    this.mostrarKw(this.DateSelect);
+    this.mostrarOcupacion(this.DateSelect);
+    this.getMedidorDia(this.DateSelect);
+  }
+
+  pisoSelect(){
+    if(this.piso == 1){
+      this.pisoMostrar = "Medidor General"
+    }
+    else if(this.piso == 4){
+      this.pisoMostrar = "Piso 1"
+    }else{
+      this.pisoMostrar = "Piso " + this.piso
+    }
+  }
+
+  mostrarKw(fecha: string){
+    this._medidorService.getMedidorDiakw(fecha+"n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -60,8 +92,8 @@ export class DiaComponent implements OnInit {
     })
   }
 
-  mostrarOcupacion(){
-    this._medidorService.getMedidorDiaOcupacion("2022-01-25n2022-01-26n1").subscribe(data => {
+  mostrarOcupacion(fecha: string){
+    this._medidorService.getMedidorDiaOcupacion(fecha+"n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -73,7 +105,7 @@ export class DiaComponent implements OnInit {
   }
 
   mostrarSuperficie(){
-    this._medidorService.getMedidorDiaSuperficie("1").subscribe(data => {
+    this._medidorService.getMedidorDiaSuperficie(this.piso+"").subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -84,12 +116,29 @@ export class DiaComponent implements OnInit {
       console.log(error);
     })
   }
-  getMedidorDia(){
-    this._medidorService.getMedidorDia("2022-01-25n2022-01-26n1").subscribe(data => {
+
+
+  mostrarFecha(){
+    this._fechaServices.getFechas(this.piso+"").subscribe(data => {
+      if(Object.keys(data).length === 0){
+        console.log("no datos");
+      }else{
+        this.fechaMax = data[0].max;
+        this.fechaMin = data[0].min;
+        console.log(this.fechaMax + " " + this.fechaMin)
+      }
+    })
+  }
+
+
+
+  getMedidorDia(fecha: string){
+    this._medidorService.getMedidorDia(fecha+"n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
         this.listMedidor = data;
+        console.log(data)
         this.fecha = this.listMedidor.map((listMedidor: any) => listMedidor.time)
         this.voltaje = this.listMedidor.map((listMedidor: any) => listMedidor.v3ph)
         this.intencidad = this.listMedidor.map((listMedidor: any) => listMedidor.i3ph)
@@ -106,7 +155,7 @@ export class DiaComponent implements OnInit {
                 type: 'line' },
           ],
           layout: {
-            title: 'A Fancy Plot',
+            title: 'Voltaje Trifasico',
             yaxis: {
               range: [227.5, 230]
             }
@@ -120,7 +169,7 @@ export class DiaComponent implements OnInit {
                 type: 'line' },
           ],
           layout: {
-            title: 'A Fancy Plot',
+            title: 'Intensidad Trifasica',
             yaxis: {
               range: [40, 87]
             }
@@ -134,16 +183,12 @@ export class DiaComponent implements OnInit {
                 type: 'line' },
           ],
           layout: {
-            title: 'A Fancy Plot',
+            title: 'Potencia Trifasica',
             yaxis: {
               range: [-1.5, 1.5]
             }
           }
         };
-
-
-
-
       }
     },error =>{
       console.log(error);

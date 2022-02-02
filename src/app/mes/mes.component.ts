@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Medidor } from '../models/medidor.model';
+import { FechaServices } from '../servicios/fecha.services'
 import { MedidorServices } from '../servicios/medidor-dia.services';
 
 
@@ -26,24 +28,67 @@ export class MesComponent implements OnInit {
   graphIntesidad: any = [];
   graphPotencia: any = [];
 
+  piso: number;
+  fechaMax: string;
+  fechaMin: string;
+
+  pisoMostrar: string;
 
   constructor(
-    private _medidorService: MedidorServices
-    ) {
-
+        private _medidorService: MedidorServices,
+        private _fechaServices: FechaServices,
+        private route: ActivatedRoute) {
      }
 
   ngOnInit(): void {
 
-    this.mostrarKw();// ver si se mopdifia
-    this.mostrarOcupacion();// ver si se mopdifia
-
-
-    this.getMedidorMes();// chart.js
+    this.piso = this.route.snapshot.params['id'];
+    this.pisoSelect()
+    this.mostrarFecha();
+    this.mostrarKw("2022-02-01","2022-02-28");// ver si se mopdifia
+    this.mostrarOcupacion("2022-02-01","2022-02-28");// ver si se mopdifia
+    this.getMedidorMes("2022-02-01","2022-02-28");// chart.js
   }
 
-  mostrarKw(){
-    this._medidorService.getMedidorDiakw("2022-01-01n2022-01-31n1").subscribe(data => {
+  DateSelect : any;
+
+  fechaEscogida(){
+    this.graph = [];
+    this.graphIntesidad= [];
+    this.graphPotencia = [];
+    let anio = this.DateSelect.split('-')[0]
+    let mes = this.DateSelect.split('-')[1]
+    let dia = new Date(anio, mes, 0).getDate();
+    this.mostrarKw(this.DateSelect+"-01",this.DateSelect+"-"+dia)
+    this.mostrarOcupacion(this.DateSelect+"-01",this.DateSelect+"-"+dia);// ver si se mopdifia
+    this.getMedidorMes(this.DateSelect+"-01",this.DateSelect+"-"+dia);// chart.js
+  }
+
+  pisoSelect(){
+    if(this.piso == 1){
+      this.pisoMostrar = "Medidor General"
+    }
+    else if(this.piso == 4){
+      this.pisoMostrar = "Piso 1"
+    }else{
+      this.pisoMostrar = "Piso " + this.piso
+    }
+  }
+
+  mostrarFecha(){
+    this._fechaServices.getFechasMes(this.piso+"").subscribe(data => {
+      if(Object.keys(data).length === 0){
+        console.log("no datos");
+      }else{
+        this.fechaMax = data[0].max;
+        this.fechaMin = data[0].min;
+        console.log(this.fechaMax + " " + this.fechaMin)
+      }
+    })
+  }
+
+  mostrarKw(fechaIni: string, fechaFin: string){
+    this._medidorService.getMedidorAnioDatos(fechaIni+"n"+fechaFin+"n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -56,8 +101,8 @@ export class MesComponent implements OnInit {
     })
   }
 
-  mostrarOcupacion(){  //quizas un promedio
-    this._medidorService.getMedidorDiaOcupacion("2022-01-01n2022-01-31n1").subscribe(data => {
+  mostrarOcupacion(fechaIni: string, fechaFin: string){  //quizas un promedio
+    this._medidorService.getMedidorAnioOcupacion(fechaIni+"n"+fechaFin+"n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -69,7 +114,7 @@ export class MesComponent implements OnInit {
   }
 
   mostrarSuperficie(){
-    this._medidorService.getMedidorDiaSuperficie("1").subscribe(data => {
+    this._medidorService.getMedidorDiaSuperficie(""+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -82,8 +127,8 @@ export class MesComponent implements OnInit {
   }
 
 
-  getMedidorMes(){
-    this._medidorService.getMedidorMes("2022-01-01n2022-01-31n1").subscribe(data => {
+  getMedidorMes(fechaIni: string, fechaFin: string){
+    this._medidorService.getMedidorMes(fechaIni+"n"+fechaFin+"n"+this.piso).subscribe(data => {
       if(Object.keys(data).length === 0){
         console.log("no datos");
       }else{
@@ -92,10 +137,6 @@ export class MesComponent implements OnInit {
         this.voltaje = this.listMedidor.map((listMedidor: any) => listMedidor.v3ph)
         this.intencidad = this.listMedidor.map((listMedidor: any) => listMedidor.i3ph)
         this.pf3ph = this.listMedidor.map((listMedidor: any) => listMedidor.pf3ph)
-
-        console.log(this.fecha)
-
-
         delay(300);
 
         this.graph = {
@@ -139,10 +180,6 @@ export class MesComponent implements OnInit {
             }*/
           }
         };
-
-
-
-
       }
     },error =>{
       console.log(error);
