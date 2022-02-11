@@ -1,0 +1,16 @@
+.cuerpo{
+  padding: 16px;
+  display: block;
+}
+
+.cabeza{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.cabeza p{
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    margin: 0px 10px;
+}
+

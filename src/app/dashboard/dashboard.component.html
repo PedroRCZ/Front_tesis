@@ -1,179 +1,171 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Dashboard</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <select  [(ngModel)]="estadoSimu" (change)="estado()">
-    <option value="1">Encender</option>
-    <option value="2">Apagar</option>
-  </select>
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode = "side" opened="true" >
+    <mat-nav-list>
 
-  <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
-      </li>
-  </ul>
-</header>
+      <mat-list-item>
+        <mat-icon mat-list-icon class="chevron_button sidenav-button" (click)="isExpanded =  !isExpanded"
+        [ngClass]="{'rotated': isExpanded}" >chevron_right</mat-icon>
+      </mat-list-item>
 
-<div class="container-fluid lateral">
-  <div class="row">
-      <nav id="sidebarMenu" class="sidebar collapse">
-          <div class="position-sticky">
-          <!--Dasboards-->
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                  <span>Dashboards</span>
-                  <a class="link-secondary" href="#" aria-label="Add a new report">
-                      <span data-feather="plus-circle"></span>
-                  </a>
-              </h6>
-              <ul class="nav flex-column">
-                  <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="medidores/general">
-                          <span data-feather="home">Mostrar Dashboard</span>
-                      </a>
-                  </li>
+      <mat-accordion class="example-headers-align" multi>
 
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor/dia',1]"><!--Editar vinculo-->
-                        <span data-feather="layers">Día</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor/mes',1]"><!--Editar vinculo-->
-                        <span data-feather="layers">Mes</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor/anio',1]"><!--Editar vinculo-->
-                        <span data-feather="layers">Año</span>
-                    </a>
-                  </li>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-list-item >
+                <mat-icon mat-list-icon >dashboard</mat-icon>
+                <span *ngIf="isExpanded" >General</span>
+              </mat-list-item>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-              </ul>
-          <!--Medidores-->
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                  <span>Medidores</span>
-                  <a class="link-secondary" href="#" aria-label="Add a new report">
-                      <span data-feather="plus-circle"></span>
-                  </a>
-              </h6>
-              <ul class="nav flex-column mb-2">
-                  <li class="nav-item">
-                      <a class="nav-link" href="medidores/medidor1"><!--Editar vinculo-->
-                          <span data-feather="layers">Medidor 1</span>
-                      </a>
-                  </li>
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/general']">
+            <mat-icon mat-list-icon >R</mat-icon>
+            <span *ngIf="isExpanded" >Tiempo Real</span>
+          </mat-list-item>
 
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor4/dia',4]"><!--Editar vinculo-->
-                        <span data-feather="layers">Día</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor4/mes',4]"><!--Editar vinculo-->
-                        <span data-feather="layers">Mes</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor4/anio',4]"><!--Editar vinculo-->
-                        <span data-feather="layers">Año</span>
-                    </a>
-                  </li>
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor/dia',1]">
+            <mat-icon mat-list-icon >D</mat-icon>
+            <span *ngIf="isExpanded" >Día</span>
+          </mat-list-item>
+
+          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor/mes',1]">
+            <mat-icon mat-list-icon >M</mat-icon>
+            <span *ngIf="isExpanded" >Mes</span>
+          </mat-list-item>
+
+          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor/anio',1]">
+            <mat-icon mat-list-icon >A</mat-icon>
+            <span *ngIf="isExpanded">Año</span>
+          </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-list-item >
+                <mat-icon mat-list-icon >filter_1</mat-icon>
+                <span *ngIf="isExpanded" >Piso 1</span>
+              </mat-list-item>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor1']">
+            <mat-icon mat-list-icon >R</mat-icon>
+            <span *ngIf="isExpanded">Tiempo Real</span>
+          </mat-list-item>
+
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor4/dia',4]">
+            <mat-icon mat-list-icon >D</mat-icon>
+            <span *ngIf="isExpanded" >Día</span>
+          </mat-list-item>
+
+          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor4/mes',4]">
+            <mat-icon mat-list-icon >M</mat-icon>
+            <span *ngIf="isExpanded" >Mes</span>
+          </mat-list-item>
+
+          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor4/anio',4]">
+            <mat-icon mat-list-icon >A</mat-icon>
+            <span *ngIf="isExpanded">Año</span>
+          </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-list-item >
+                <mat-icon mat-list-icon >filter_2</mat-icon>
+                <span *ngIf="isExpanded" >Piso 2</span>
+              </mat-list-item>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor2']">
+            <mat-icon mat-list-icon >R</mat-icon>
+            <span *ngIf="isExpanded" >Tiempo Real</span>
+          </mat-list-item>
+
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor2/dia',2]">
+            <mat-icon mat-list-icon >D</mat-icon>
+            <span *ngIf="isExpanded" >Día</span>
+          </mat-list-item>
+
+          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor2/mes',2]">
+            <mat-icon mat-list-icon >M</mat-icon>
+            <span *ngIf="isExpanded" >Mes</span>
+          </mat-list-item>
+
+          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor2/anio',2]">
+            <mat-icon mat-list-icon >A</mat-icon>
+            <span *ngIf="isExpanded">Año</span>
+          </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-list-item class="icon-prin" >
+                <mat-icon class="icon-prin" mat-list-icon >filter_3</mat-icon>
+                <span *ngIf="isExpanded" >Piso 3</span>
+              </mat-list-item>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor3']">
+            <mat-icon mat-list-icon >R</mat-icon>
+            <span *ngIf="isExpanded">Tiempo Real</span>
+          </mat-list-item>
+
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor3/dia',3]">
+            <mat-icon mat-list-icon >D</mat-icon>
+            <span *ngIf="isExpanded" >Día</span>
+          </mat-list-item>
+
+          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor3/mes',3]">
+            <mat-icon mat-list-icon >M</mat-icon>
+            <span *ngIf="isExpanded" >Mes</span>
+          </mat-list-item>
+
+          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor3/anio',3]">
+            <mat-icon mat-list-icon >A</mat-icon>
+            <span *ngIf="isExpanded">Año</span>
+          </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-list-item  appearance="fill" [routerLink]="['medidores/simulacion']">
+          <mat-icon class="icon-simu" mat-list-icon >timeline</mat-icon>
+          <span *ngIf="isExpanded">Datos Simulación</span>
+        </mat-list-item>
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div class="content">
+
+    <div class="cabeza sticky-top ">
+      <mat-toolbar>
+        <h4>Monitoreo de KPI de gestión energética</h4>
+      </mat-toolbar>
+      <div class="server">
+        <p>Simulador</p>
+        <select  [(ngModel)]="estadoSimu" (change)="estado()">
+          <option value="1">Encendido</option>
+          <option value="2" selected>Apagado</option>
+        </select>
+      </div>
+
+    </div>
 
 
-
-                  <li class="nav-item">
-                      <a class="nav-link" href="medidores/medidor2"><!--Editar vinculo-->
-                          <span data-feather="file-text">Medidor 2</span>
-                      </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor2/dia',2]"><!--Editar vinculo-->
-                        <span data-feather="layers">Día</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor2/mes',2]"><!--Editar vinculo-->
-                        <span data-feather="layers">Mes</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor2/anio',2]"><!--Editar vinculo-->
-                        <span data-feather="layers">Año</span>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="medidores/medidor3"> <!--Editar vinculo-->
-                        <span data-feather="file-text">Medidor 3</span>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor3/dia',3]"><!--Editar vinculo-->
-                        <span data-feather="layers">Día</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor3/mes',3]"><!--Editar vinculo-->
-                        <span data-feather="layers">Mes</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['medidores/medidor3/anio',3]"><!--Editar vinculo-->
-                        <span data-feather="layers">Año</span>
-                    </a>
-                  </li>
-
-              </ul>
-
-          <!--Simulación-->
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                  <span>Simulación</span>
-                  <a class="link-secondary" href="#" aria-label="Add a new report">
-                      <span data-feather="plus-circle"></span>
-                  </a>
-              </h6>
-              <ul class="nav flex-column mb-2">
-                  <li class="nav-item">
-                      <a class="nav-link" href="medidores/simulacion"> <!--Editar vinculo-->
-                          <span data-feather="layers">Simulación de cargas</span>
-                      </a>
-                  </li>
-              </ul>
-          <!--Equipos-->
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                  <span>Equipos de simulación</span>
-                  <a class="link-secondary" href="#" aria-label="Add a new report">
-                      <span data-feather="plus-circle"></span>
-                  </a>
-              </h6>
-              <ul class="nav flex-column mb-2">
-                  <li class="nav-item">
-                      <a class="nav-link" href="gastos/producto">
-                          <span data-feather="layers">Agregar Equipo</span>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="gastos/proveedor">
-                          <span data-feather="layers">Editar Equipo</span>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="gastos">
-                          <span data-feather="layers">Eliminación de equipos</span>
-                      </a>
-                  </li>
-              </ul>
-          </div>
-      </nav>
+    <router-outlet></router-outlet>
   </div>
-  <main class="cuerpo">
 
-    <router-outlet>
-    </router-outlet>
+</mat-sidenav-container>
 
-  </main>
-</div>
+
+
+
+
+

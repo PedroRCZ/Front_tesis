@@ -9,10 +9,12 @@ import { Medidor1Component } from './medidor1/medidor1.component';
 import { Medidor2Component } from './medidor2/medidor2.component';
 import { Medidor3Component } from './medidor3/medidor3.component';
 import { MesComponent } from './mes/mes.component';
+import { SimulacionFormComponent } from './modulos/simulacion-form/simulacion-form.component';
 import { SimulacionListComponent } from './modulos/simulacion-list/simulacion-list.component';
 
 
 const routes: Routes = [
+  {path: '', component: Medidor1Component},
   {path: 'medidores/medidor1', component: Medidor1Component},
   {path: 'medidores/medidor2', component: Medidor2Component},
   {path: 'medidores/medidor3', component: Medidor3Component},
@@ -30,6 +32,7 @@ const routes: Routes = [
   {path: 'medidores/medidor4/mes/:id', component:MesComponent},
   {path: 'medidores/medidor4/anio/:id', component:AnioComponent},
   {path: 'medidores/simulacion', component:SimulacionListComponent},
+  {path: 'medidores/agregar', component:SimulacionFormComponent},
 ];
 
 @NgModule({

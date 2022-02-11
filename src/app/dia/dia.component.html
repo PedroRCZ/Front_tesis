@@ -1,74 +1,213 @@
-<h2>{{pisoMostrar}}  - Datos historicos por día</h2>
+<div class="cuerpo">
 
-<div>
-  <label for="start">Start date: </label>
-
-  <input type="date" id="start" name="trip-start"
-        value = "2022-01-31"
-        [(ngModel)] = "DateSelect"
-        min={{fechaMin}} max={{fechaMax}}>
-
-  <button (click)="fechaEscogida()" >escoger fecha</button>
-
-</div>
-
-<div class="seccion-uno">
-  <div class="kw">
-    <p class="titulo">Kw</p>
-    <p>{{ kw | number: '.1-2' }}</p>
-  </div>
-
-  <div class="precio-kw">
-    <p class="titulo">Precio $ </p>
-    <p>{{ kwPrecio | number: '.1-2' }}</p>
-  </div>
-  <div class="ocupacion">
-    <p class="titulo">Ocupación</p>
-    <p>{{ ocupacion }}</p>
-  </div>
-</div>
-
-<br>
-
-<div class="seccion-dos">
-  <div class="superficie">
-    <p class="titulo">Superficie (m2)</p>
-    <p>{{ superficie }}</p>
-  </div>
-  <div class="kw-superficie">
-    <p class="titulo">Kw/mes - m2</p>
-    <p>{{ kw_m2 | number: '.1-2'}}</p>
-  </div>
-</div>
-
-<br>
-
-<div class="seccion-tres">
-  <div class="voltaje">
-    <div #chart>
-      <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+  <div class="titulo-temp" >
+    <h2>{{pisoMostrar}}  - Datos historicos por día</h2>
+    <div class="temporalidad">
+      <label for="start">Start date: </label>
+      <input type="date" id="start" name="trip-start"
+            value = "2022-01-31"
+            [(ngModel)] = "DateSelect"
+            min={{fechaMin}} max={{fechaMax}}>
+      <button (click)="fechaEscogida()" >escoger fecha</button>
     </div>
   </div>
-</div>
 
-<br>
+  <div class="seccion-uno">
+    <div class="kw card">
+      <p class="titulo">Kw</p>
+      <p>{{ kw | number: '.1-2' }}</p>
+    </div>
 
-<div class="seccion-cuatro">
-  <div class="intencidad">
-    <div #chartIntecidad>
-      <plotly-plot [data]="graphIntesidad.data" [layout]="graphIntesidad.layout"></plotly-plot>
+    <div class="precio-kw card">
+      <p class="titulo">Precio $ </p>
+      <p>{{ kwPrecio | number: '.1-2' }}</p>
+    </div>
+    <div class="ocupacion card">
+      <p class="titulo">Ocupación</p>
+      <p>{{ ocupacion }}</p>
     </div>
   </div>
-</div>
 
-<br>
+  <br>
 
-<div  class="seccion-cinco" >
-  <div class="potencia">
-    <div #chartPotencia>
-      <plotly-plot [data]="graphPotencia.data" [layout]="graphPotencia.layout"></plotly-plot>
+  <div class="seccion-dos">
+    <div class="superficie card">
+      <p class="titulo">Superficie (m2)</p>
+      <p>{{ superficie }}</p>
+    </div>
+    <div class="kw-superficie card">
+      <p class="titulo">Kw/mes - m2</p>
+      <p>{{ kw_m2 | number: '.1-2'}}</p>
     </div>
   </div>
+
+  <br>
+
+  <div class="seccion-tres">
+    <div class="voltaje">
+      <div #chart>
+        <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+  <div class="seccion-tres">
+    <div class="voltaje">
+      <div #chart>
+        <plotly-plot [data]="graphVtri.data" [layout]="graphVtri.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="seccion-cuatro">
+    <div class="intencidad">
+      <div #chartIntecidad>
+        <plotly-plot [data]="graphIntesidad.data" [layout]="graphIntesidad.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="seccion-cuatro">
+    <div class="intencidadTri">
+      <div #chartIntecidad>
+        <plotly-plot [data]="graphIntesidadTri.data" [layout]="graphIntesidadTri.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div  class="seccion-cinco" >
+    <div class="potencia">
+      <div #chartPotencia>
+        <plotly-plot [data]="graphPotencia.data" [layout]="graphPotencia.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div  class="seccion-cinco" >
+    <div class="potenciaTri">
+      <div #chartPotencia>
+        <plotly-plot [data]="graphPotenciaTri.data" [layout]="graphPotenciaTri.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div  class="seccion-cinco" >
+    <div class="Frecuencia">
+      <div #chartPotencia>
+        <plotly-plot [data]="graphFrec.data" [layout]="graphFrec.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="htmlData">
+    <table class="tg">
+      <thead>
+        <tr>
+          <th class="tg-0pky" colspan="6">Resumen de Varuables</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tg-0pky" colspan="2"></td>
+          <td class="tg-0lax">Voltaje</td>
+          <td class="tg-0pky">Intencidad</td>
+          <td class="tg-0pky">Potencia</td>
+          <td class="tg-0pky">Frecuencia</td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" rowspan="3">Trifasico</td>
+          <td class="tg-0lax">maximo</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax" rowspan="12"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">minimo</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">promedio</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" rowspan="3">Línea 1</td>
+          <td class="tg-0lax">maximo</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">minimo</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">promedio</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" rowspan="3">Línea 2</td>
+          <td class="tg-0lax">maximo</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax"> minimo</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">promedio</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" rowspan="3">Línea 3</td>
+          <td class="tg-0lax">maximo</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">minimo</td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+          <td class="tg-0lax"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">promedio</td>
+          <td class="tg-0lax">  </td>
+          <td class="tg-0lax">2</td>
+          <td class="tg-0lax">3</td>
+        </tr>
+      </tbody>
+      </table>
+  </div>
+
+  <div>
+    <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Reporte</button>
+  </div>
+
 </div>
-
-

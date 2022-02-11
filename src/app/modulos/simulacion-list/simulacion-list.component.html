@@ -1,34 +1,40 @@
-<p>simulacion-list works!</p>
+<div class="cuerpo">
 
-<select  [(ngModel)]="medidorSelec" (change)="medidor()">
-  <option value="1">Medidor 1</option>
-  <option value="2">Medidor 2</option>
-  <option value="2">Medidor 3</option>
-</select>
-
-<div>
-  <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">piso</th>
-          <th scope="col">id</th>
-          <th scope="col">voltaje trifasico</th>
-          <th scope="col">Voltaje linea 1</th>
-          <th scope="col">Voltaje linea 2</th>
-          <th scope="col">Voltaje linea 3</th>
-          <th scope="col">Intencidad trifasica</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor = "let cliente of listMedidor">
-          <th scope="row">{{cliente.piso}}</th>
-          <th scope="row">{{cliente.id}}</th>
-          <td>{{cliente.v3ph}}</td>
-          <td>{{cliente.vl1}}</td>
-          <td>{{cliente.vl2}}</td>
-          <td>{{cliente.vl3}}</td>
-          <td>{{cliente.i3ph}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="cabeza">
+    <p>simulacion-list works!</p>
+    <select  [(ngModel)]="medidorSelec" (change)="medidor()">
+      <option value="1">Medidor 1</option>
+      <option value="2">Medidor 2</option>
+      <option value="3">Medidor 3</option>
+    </select>
+  </div>
+  <button class="btn btn-info" type="submit" style="cursor: pointer;" (click)="onGuardar()" >Agregar Datos</button>
+  <div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Medidor</th>
+            <th scope="col">id</th>
+            <th scope="col">voltaje trifasico</th>
+            <th scope="col">Voltaje linea 1</th>
+            <th scope="col">Voltaje linea 2</th>
+            <th scope="col">Voltaje linea 3</th>
+            <th scope="col">Intencidad trifasica</th>
+            <th scope="col">Energia Activa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let cliente of listMedidor">
+            <th scope="row">{{cliente.piso}}</th>
+            <th scope="row">{{cliente.id}}</th>
+            <td>{{cliente.v3ph}}</td>
+            <td>{{cliente.vl1}}</td>
+            <td>{{cliente.vl2}}</td>
+            <td>{{cliente.vl3}}</td>
+            <td>{{cliente.i3ph}}</td>
+            <td>{{cliente.ae3ph}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
 </div>

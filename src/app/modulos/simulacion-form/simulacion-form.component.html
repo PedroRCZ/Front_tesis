@@ -1,1 +1,26 @@
-<p>simulacion-form works!</p>
+
+<div>
+  <p>hola</p>
+
+  <form  class="item"  #f="ngForm" (ngSubmit)="f.form.valid && onGuardar()" >
+    <input type="text" required name="v3ph" placeholder="V trifasico" [(ngModel)]="v3ph">
+    <input type="text" required name="vl1" placeholder="V trifasico" [(ngModel)]="vl1">
+    <input type="text" required name="vl2" placeholder="V trifasico" [(ngModel)]="vl2">
+    <input type="text" required name="vl3" placeholder="V trifasico" [(ngModel)]="vl3">
+    <input type="text" required name="i3ph" placeholder="V trifasico" [(ngModel)]="i3ph">
+    <input type="text" required name="il1" placeholder="V trifasico" [(ngModel)]="il1">
+    <input type="text" required name="il2" placeholder="V trifasico" [(ngModel)]="il2">
+    <input type="text" required name="il3" placeholder="V trifasico" [(ngModel)]="il3">
+    <input type="text" required name="pf3ph" placeholder="V trifasico" [(ngModel)]="pf3ph">
+    <input type="text" required name="pfl1" placeholder="V trifasico" [(ngModel)]="pfl1">
+    <input type="text" required name="pfl2" placeholder="V trifasico" [(ngModel)]="pfl2">
+    <input type="text" required name="pfl3" placeholder="V trifasico" [(ngModel)]="pfl3">
+    <input type="text" required name="ae3ph" placeholder="V trifasico" [(ngModel)]="ae3ph">
+    <input type="text" required name="re3ph" placeholder="V trifasico" [(ngModel)]="re3ph">
+    <input type="text" required name="se3ph" placeholder="V trifasico" [(ngModel)]="se3ph">
+    <input type="text" required name="piso" placeholder="V trifasico" [(ngModel)]="piso">
+    <input type="text" required name="id" placeholder="V trifasico" [(ngModel)]="id">
+    <button type="submit" style="cursor: pointer;" >++</button>
+  </form>
+
+</div>

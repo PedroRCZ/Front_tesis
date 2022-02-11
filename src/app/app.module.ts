@@ -22,6 +22,13 @@ import { AnioComponent } from './anio/anio.component';
 import { MenuTiempoComponent } from './modulos/menu-tiempo/menu-tiempo.component';
 import { SimulacionFormComponent } from './modulos/simulacion-form/simulacion-form.component';
 import { SimulacionListComponent } from './modulos/simulacion-list/simulacion-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -46,6 +53,13 @@ PlotlyModule.plotlyjs = PlotlyJS;
     HttpClientModule,
     FormsModule,
     PlotlyModule,
+    BrowserAnimationsModule,
+
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
+    MatExpansionModule
   ],
   providers: [MedidorServices],
   bootstrap: [AppComponent]

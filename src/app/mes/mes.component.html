@@ -1,73 +1,72 @@
-<h2>{{pisoMostrar}} - Datos historicos por Mes</h2>
-
-<div>
-  <label for="start">Start date: </label>
-
-  <input input type="month" name="fecha" id="start"
-      value = "2022-01"
-      [(ngModel)] = "DateSelect"
-      min={{fechaMin}} max={{fechaMax}}>
-
-  <button (click)="fechaEscogida()" >escoger fecha</button>
-
-</div>
-
-<div class="seccion-uno">
-  <div class="kw">
-    <p class="titulo">Kw</p>
-    <p>{{ kw | number: '.1-2' }}</p>
+<div class="cuerpo">
+  <div class="titulo-temp" >
+    <h2>{{pisoMostrar}} - Datos historicos por Mes</h2>
+    <div class="temporalidad">
+      <label for="start">Start date: </label>
+      <input input type="month" name="fecha" id="start"
+          value = "2022-01"
+          [(ngModel)] = "DateSelect"
+          min={{fechaMin}} max={{fechaMax}}>
+      <button (click)="fechaEscogida()" >escoger fecha</button>
+    </div>
   </div>
-  <div class="precio-kw">
-    <p class="titulo">Precio $ </p>
-    <p>{{ kwPrecio | number: '.1-2' }}</p>
-  </div>
-  <div class="ocupacion">
-    <p class="titulo">Ocupación</p>
-    <p>{{ ocupacion }}</p>
-  </div>
-</div>
 
-<br>
-
-<div class="seccion-dos">
-  <div class="superficie">
-    <p class="titulo">Superficie (m2)</p>
-    <p>{{ superficie }}</p>
+  <div class="seccion-uno">
+    <div class="kw card">
+      <p class="titulo">Kw</p>
+      <p>{{ kw | number: '.1-2' }}</p>
+    </div>
+    <div class="precio-kw card">
+      <p class="titulo">Precio $ </p>
+      <p>{{ kwPrecio | number: '.1-2' }}</p>
+    </div>
+    <div class="ocupacion card">
+      <p class="titulo">Ocupación</p>
+      <p>{{ ocupacion }}</p>
+    </div>
   </div>
-  <div class="kw-superficie">
-    <p class="titulo">Kw/mes - m2</p>
-    <p>{{ kw_m2  | number: '.1-2'}}</p>
+
+  <br>
+
+  <div class="seccion-dos">
+    <div class="superficie card">
+      <p class="titulo">Superficie (m2)</p>
+      <p>{{ superficie }}</p>
+    </div>
+    <div class="kw-superficie card">
+      <p class="titulo">Kw/mes - m2</p>
+      <p>{{ kw_m2  | number: '.1-2'}}</p>
+    </div>
   </div>
-</div>
 
-<br>
+  <br>
 
-<div class="seccion-tres">
-  <div class="voltaje">
-    <div #chart>
-      <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+  <div class="seccion-tres">
+    <div class="voltaje">
+      <div #chart>
+        <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="seccion-cuatro">
+    <div class="intencidad">
+      <div #chartIntecidad>
+        <plotly-plot [data]="graphIntesidad.data" [layout]="graphIntesidad.layout"></plotly-plot>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div  class="seccion-cinco" >
+    <div>
+      <div #chartPotencia>
+        <plotly-plot [data]="graphPotencia.data" [layout]="graphPotencia.layout"></plotly-plot>
+      </div>
     </div>
   </div>
 </div>
-
-<br>
-
-<div class="seccion-cuatro">
-  <div class="intencidad">
-    <div #chartIntecidad>
-      <plotly-plot [data]="graphIntesidad.data" [layout]="graphIntesidad.layout"></plotly-plot>
-    </div>
-  </div>
-</div>
-
-<br>
-
-<div  class="seccion-cinco" >
-  <div>
-    <div #chartPotencia>
-      <plotly-plot [data]="graphPotencia.data" [layout]="graphPotencia.layout"></plotly-plot>
-    </div>
-  </div>
-</div>
-
 

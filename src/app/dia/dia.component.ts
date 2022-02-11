@@ -5,6 +5,10 @@ import { FechaServices } from '../servicios/fecha.services'
 import { Medidor } from '../models/medidor.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import jsPDF from 'jspdf';
+
+import html2canvas from 'html2canvas';
+
 
 
 declare var Plotly: any;
@@ -29,19 +33,51 @@ export class DiaComponent implements OnInit {
   pf3ph: any;
 
   graph: any = [];
+  graphVtri: any = [];
   graphIntesidad: any = [];
+  graphIntesidadTri: any = [];
   graphPotencia: any = [];
+  graphPotenciaTri: any = [];
+  graphFrec: any = [];
 
   piso: number;
   pisoMostrar: string;
   fechaMax: string;
   fechaMin: string;
 
+
+
+
+  downloadPDF(){
+    const DATA : any = document.getElementById('htmlData');
+    const doc = new jsPDF('p' , 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3,
+    };
+
+    html2canvas(DATA, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+    });
+  }
+
   constructor(private _medidorService: MedidorServices,
               private _fechaServices: FechaServices,
             private route: ActivatedRoute,
   ) {
-    //Chart.register(...registerables);
+
   }
 
   ngOnInit(): void {
@@ -144,8 +180,6 @@ export class DiaComponent implements OnInit {
         this.intencidad = this.listMedidor.map((listMedidor: any) => listMedidor.i3ph)
         this.pf3ph = this.listMedidor.map((listMedidor: any) => listMedidor.pf3ph)
 
-
-
         delay(300);
 
         this.graph = {
@@ -162,6 +196,29 @@ export class DiaComponent implements OnInit {
           }
         };
 
+        this.graphVtri = {
+          data: [
+              { x: this.fecha ,
+                y: this.listMedidor.map((listMedidor: any) => listMedidor.vl1),
+                type: 'line',
+                name: "Linea 1" },
+              { x: this.fecha ,
+                y: this.listMedidor.map((listMedidor: any) => listMedidor.vl2),
+                name: "Linea 2",
+                type: 'line' },
+                { x: this.fecha ,
+                  y: this.listMedidor.map((listMedidor: any) => listMedidor.vl3),
+                  name: "Linea 3",
+                  type: 'line' },
+          ],
+          layout: {
+            title: 'Voltaje Por Linea',
+            yaxis: {
+              range: [130, 135]
+            }
+          }
+        };
+
         this.graphIntesidad = {
           data: [
               { x: this.fecha ,
@@ -171,7 +228,30 @@ export class DiaComponent implements OnInit {
           layout: {
             title: 'Intensidad Trifasica',
             yaxis: {
-              range: [40, 87]
+              range: [Math.max.apply(null, this.intencidad), Math.min.apply(null, this.intencidad)]
+            }
+          }
+        };
+
+        this.graphIntesidadTri = {
+          data: [
+            { x: this.fecha ,
+              y: this.listMedidor.map((listMedidor: any) => listMedidor.il1),
+              type: 'line',
+              name: "Linea 1" },
+            { x: this.fecha ,
+              y: this.listMedidor.map((listMedidor: any) => listMedidor.il2),
+              name: "Linea 2",
+              type: 'line' },
+              { x: this.fecha ,
+                y: this.listMedidor.map((listMedidor: any) => listMedidor.il3),
+                name: "Linea 3",
+                type: 'line' },
+            ],
+          layout: {
+            title: 'Intensidad Por linea',
+            yaxis: {
+              range: [Math.max.apply(null, this.intencidad), Math.min.apply(null, this.intencidad)]
             }
           }
         };
@@ -179,16 +259,60 @@ export class DiaComponent implements OnInit {
         this.graphPotencia = {
           data: [
               { x: this.fecha ,
-                y: this.pf3ph,
+                y: this.listMedidor.map((listMedidor: any) => listMedidor.ap3ph),
                 type: 'line' },
           ],
           layout: {
-            title: 'Potencia Trifasica',
+            title: 'Potencia Activa Trifasica',
             yaxis: {
-              range: [-1.5, 1.5]
+              range: [Math.max.apply(this.listMedidor.map((listMedidor: any) => listMedidor.ap3ph)),
+                Math.min.apply(this.listMedidor.map((listMedidor: any) => listMedidor.ap3ph))]
             }
           }
         };
+
+        this.graphPotenciaTri = {
+          data: [
+            { x: this.fecha ,
+              y: this.listMedidor.map((listMedidor: any) => listMedidor.apl1),
+              type: 'line',
+              name: "Linea 1" },
+            { x: this.fecha ,
+              y: this.listMedidor.map((listMedidor: any) => listMedidor.apl2),
+              name: "Linea 2",
+              type: 'line' },
+              { x: this.fecha ,
+                y: this.listMedidor.map((listMedidor: any) => listMedidor.apl3),
+                name: "Linea 3",
+                type: 'line' },
+            ],
+          layout: {
+            title: 'Potencia Activa Por Línea',
+            yaxis: {
+              range: [Math.max.apply(this.listMedidor.map((listMedidor: any) => listMedidor.apl1)),
+                Math.min.apply(this.listMedidor.map((listMedidor: any) => listMedidor.apl2))]
+            }
+          }
+        };
+
+        this.graphFrec = {
+          data: [
+              { x: this.fecha ,
+                y: this.listMedidor.map((listMedidor: any) => listMedidor.freq),
+                type: 'line' },
+          ],
+          layout: {
+            title: 'Frecuencia',
+
+          }
+        };
+
+
+
+
+
+
+
       }
     },error =>{
       console.log(error);

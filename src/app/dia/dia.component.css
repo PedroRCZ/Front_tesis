@@ -1,3 +1,27 @@
+
+.titulo-temp{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
+.temporalidad{
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+  white-space: nowrap;
+}
+.temporalidad label{
+  margin: 0px 10px;
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+}
+
+/*  --------------  */
+.cuerpo{
+  padding: 16px;
+  display: block;
+}
+
 div{
   display: flex;
 }
@@ -116,3 +140,12 @@ div p{
   .seccion-cinco div div plotly-plot{
     width: 100%;
   }
+
+
+  .tg  {border-collapse:collapse;border-spacing:0;}
+  .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+    overflow:hidden;padding:10px 5px;word-break:normal;}
+  .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+    font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+  .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+  .tg .tg-0lax{text-align:left;vertical-align:top}

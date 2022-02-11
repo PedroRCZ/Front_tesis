@@ -8,11 +8,13 @@ import { SimulacionServices } from '../servicios/simulacion.services';
 })
 export class DashboardComponent implements OnInit {
 
+  isExpanded: boolean = false;
+
   constructor(
     private _simulacion: SimulacionServices,
   ) { }
 
-  estadoSimu: string  = '0';
+  estadoSimu: string  = '2';
 
   ngOnInit(): void {
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SimulacionServices } from '../../servicios/simulacion.services';
 import { Medidores } from '../../models/medidores.model'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-simulacion-list',
@@ -11,13 +12,14 @@ export class SimulacionListComponent implements OnInit {
 
   constructor(
     private _simulacion: SimulacionServices,
+    private router: Router
   ) { }
 
   medidorSelec: string = "1";
   listMedidor: Medidores[] = [];
 
   ngOnInit(): void {
-
+    this.medidor();
   }
 
 
@@ -30,6 +32,10 @@ export class SimulacionListComponent implements OnInit {
         console.log(this.listMedidor)
       }
     })
+  }
+
+  onGuardar(){
+      this.router.navigate(['medidores/agregar'])
   }
 
 }
