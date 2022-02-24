@@ -37,6 +37,8 @@ export class AnioComponent implements OnInit {
   anio = [{to_char: 2021},{to_char: 2022}];
   reporteD: any = [];
 
+  mostrarT = false
+
   downloadPDF(){
     const DATA : any = document.getElementById('htmlData');
     const doc = new jsPDF('p' , 'pt', 'a4');
@@ -118,6 +120,7 @@ export class AnioComponent implements OnInit {
         console.log("no datos");
       }else{
         this.reporteD = data;
+        this.mostrarT = true
         console.log(this.reporteD)
         console.log(this.reporteD[0].voltajel1pro)
       }

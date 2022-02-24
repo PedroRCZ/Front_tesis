@@ -15,7 +15,7 @@
 
   <section id="htmlData">
 
-    <h3>Informe de Datos historiscos del año {{fecha}} y {{pisoMostrar}}</h3>
+    <h3>Informe de Datos historiscos del año {{anioSelec}} y {{pisoMostrar}}</h3>
 
   <div class="seccion-uno">
     <div class="kw card">
@@ -44,7 +44,7 @@
       <p>{{ kw_m2 | number: '.1-2'}}</p>
     </div>
   </div>
-  <div >
+  <div *ngIf="mostrarT" >
     <table class="table">
       <thead>
         <tr>

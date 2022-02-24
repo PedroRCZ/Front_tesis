@@ -82,11 +82,11 @@ export class SimulacionFormComponent implements OnInit {
   onGuardar(form: Medidores){
     this._simulacionServices.agregarMedidor(form).subscribe(data =>{
       console.log("guardado")
+      this.router.navigate(['medidores/simulacion'])
     },error =>{
       console.log(error);
     })
     console.log(form)
-    this.router.navigate(['medidores/simulacion'])
   }
 
   onEditar(form: Medidores){

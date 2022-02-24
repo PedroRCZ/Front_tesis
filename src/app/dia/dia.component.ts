@@ -47,7 +47,7 @@ export class DiaComponent implements OnInit {
 
   reporteD: any = [];
 
-
+  mostrarT = false
 
 
   downloadPDF(){
@@ -135,6 +135,7 @@ export class DiaComponent implements OnInit {
         console.log("no datos");
       }else{
         this.reporteD = data;
+        this.mostrarT = true
         console.log(this.reporteD)
         console.log(this.reporteD[0].voltajel1pro)
       }

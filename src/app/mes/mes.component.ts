@@ -37,6 +37,7 @@ export class MesComponent implements OnInit {
   pisoMostrar: string;
 
   reporteD: any = [];
+  mostrarT = false
 
   downloadPDF(){
     const DATA : any = document.getElementById('htmlData');
@@ -112,6 +113,7 @@ export class MesComponent implements OnInit {
         console.log("no datos");
       }else{
         this.reporteD = data;
+        this.mostrarT = true
         console.log(this.reporteD)
         console.log(this.reporteD[0].voltajel1pro)
       }

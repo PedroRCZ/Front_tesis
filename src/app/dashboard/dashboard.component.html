@@ -1,169 +1,195 @@
 
-<mat-sidenav-container autosize>
-  <mat-sidenav #sidenav mode = "side" opened="true" >
-    <mat-nav-list>
 
-      <mat-list-item>
-        <mat-icon mat-list-icon class="chevron_button sidenav-button" (click)="isExpanded =  !isExpanded"
-        [ngClass]="{'rotated': isExpanded}" >chevron_right</mat-icon>
-      </mat-list-item>
 
-      <mat-accordion class="example-headers-align" multi>
+<div *ngIf="!btn ; else elseBlock">
 
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-list-item >
-                <mat-icon mat-list-icon >dashboard</mat-icon>
-                <span *ngIf="isExpanded" >General</span>
-              </mat-list-item>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
+  <div class="card col-md-6 offset-md-3 mt-5">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+        <form [formGroup]="editarFrom" (ngSubmit)="login(editarFrom.value)"  >
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username" class="form-control" name ="username" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" name ="password" />
+            </div>
+            <button type="submit" class="btn btn-primary" >Iniciar Sección</button>
+        </form>
+    </div>
+</div>
 
-          <mat-list-item  appearance="fill" [routerLink]="['medidores/general']">
-            <mat-icon mat-list-icon >R</mat-icon>
-            <span *ngIf="isExpanded" >Tiempo Real</span>
-          </mat-list-item>
 
-          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor/dia',1]">
-            <mat-icon mat-list-icon >D</mat-icon>
-            <span *ngIf="isExpanded" >Día</span>
-          </mat-list-item>
 
-          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor/mes',1]">
-            <mat-icon mat-list-icon >M</mat-icon>
-            <span *ngIf="isExpanded" >Mes</span>
-          </mat-list-item>
+</div>
 
-          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor/anio',1]">
-            <mat-icon mat-list-icon >A</mat-icon>
-            <span *ngIf="isExpanded">Año</span>
-          </mat-list-item>
-        </mat-expansion-panel>
+<ng-template #elseBlock>
+  <mat-sidenav-container autosize>
+    <mat-sidenav #sidenav mode = "side" opened="true" >
+      <mat-nav-list>
 
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-list-item >
-                <mat-icon mat-list-icon >filter_1</mat-icon>
-                <span *ngIf="isExpanded" >Piso 1</span>
-              </mat-list-item>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor1']">
-            <mat-icon mat-list-icon >R</mat-icon>
-            <span *ngIf="isExpanded">Tiempo Real</span>
-          </mat-list-item>
-
-          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor4/dia',4]">
-            <mat-icon mat-list-icon >D</mat-icon>
-            <span *ngIf="isExpanded" >Día</span>
-          </mat-list-item>
-
-          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor4/mes',4]">
-            <mat-icon mat-list-icon >M</mat-icon>
-            <span *ngIf="isExpanded" >Mes</span>
-          </mat-list-item>
-
-          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor4/anio',4]">
-            <mat-icon mat-list-icon >A</mat-icon>
-            <span *ngIf="isExpanded">Año</span>
-          </mat-list-item>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-list-item >
-                <mat-icon mat-list-icon >filter_2</mat-icon>
-                <span *ngIf="isExpanded" >Piso 2</span>
-              </mat-list-item>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor2']">
-            <mat-icon mat-list-icon >R</mat-icon>
-            <span *ngIf="isExpanded" >Tiempo Real</span>
-          </mat-list-item>
-
-          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor2/dia',2]">
-            <mat-icon mat-list-icon >D</mat-icon>
-            <span *ngIf="isExpanded" >Día</span>
-          </mat-list-item>
-
-          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor2/mes',2]">
-            <mat-icon mat-list-icon >M</mat-icon>
-            <span *ngIf="isExpanded" >Mes</span>
-          </mat-list-item>
-
-          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor2/anio',2]">
-            <mat-icon mat-list-icon >A</mat-icon>
-            <span *ngIf="isExpanded">Año</span>
-          </mat-list-item>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-list-item class="icon-prin" >
-                <mat-icon class="icon-prin" mat-list-icon >filter_3</mat-icon>
-                <span *ngIf="isExpanded" >Piso 3</span>
-              </mat-list-item>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor3']">
-            <mat-icon mat-list-icon >R</mat-icon>
-            <span *ngIf="isExpanded">Tiempo Real</span>
-          </mat-list-item>
-
-          <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor3/dia',3]">
-            <mat-icon mat-list-icon >D</mat-icon>
-            <span *ngIf="isExpanded" >Día</span>
-          </mat-list-item>
-
-          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor3/mes',3]">
-            <mat-icon mat-list-icon >M</mat-icon>
-            <span *ngIf="isExpanded" >Mes</span>
-          </mat-list-item>
-
-          <mat-list-item appearance="fill" [routerLink]="['medidores/medidor3/anio',3]">
-            <mat-icon mat-list-icon >A</mat-icon>
-            <span *ngIf="isExpanded">Año</span>
-          </mat-list-item>
-        </mat-expansion-panel>
-
-        <mat-list-item  appearance="fill" [routerLink]="['medidores/simulacion']">
-          <mat-icon class="icon-simu" mat-list-icon >timeline</mat-icon>
-          <span *ngIf="isExpanded">Datos Simulación</span>
+        <mat-list-item>
+          <mat-icon mat-list-icon class="chevron_button sidenav-button" (click)="isExpanded =  !isExpanded"
+          [ngClass]="{'rotated': isExpanded}" >chevron_right</mat-icon>
         </mat-list-item>
-      </mat-accordion>
-    </mat-nav-list>
-  </mat-sidenav>
 
-  <div class="content">
+        <mat-accordion class="example-headers-align" multi>
 
-    <div class="cabeza sticky-top ">
-      <mat-toolbar>
-        <h4>Monitoreo de KPI de gestión energética</h4>
-      </mat-toolbar>
-      <div class="server">
-        <p>Simulador</p>
-        <select  [(ngModel)]="estadoSimu" (change)="estado()">
-          <option value="1">Encendido</option>
-          <option value="2" selected>Apagado</option>
-        </select>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-list-item >
+                  <mat-icon mat-list-icon >dashboard</mat-icon>
+                  <span *ngIf="isExpanded" >General</span>
+                </mat-list-item>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list-item  appearance="fill" [routerLink]="['medidores/general']">
+              <mat-icon mat-list-icon >R</mat-icon>
+              <span *ngIf="isExpanded" >Tiempo Real</span>
+            </mat-list-item>
+
+            <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor/dia',1]">
+              <mat-icon mat-list-icon >D</mat-icon>
+              <span *ngIf="isExpanded" >Día</span>
+            </mat-list-item>
+
+            <mat-list-item appearance="fill" [routerLink]="['medidores/medidor/mes',1]">
+              <mat-icon mat-list-icon >M</mat-icon>
+              <span *ngIf="isExpanded" >Mes</span>
+            </mat-list-item>
+
+            <mat-list-item appearance="fill" [routerLink]="['medidores/medidor/anio',1]">
+              <mat-icon mat-list-icon >A</mat-icon>
+              <span *ngIf="isExpanded">Año</span>
+            </mat-list-item>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-list-item >
+                  <mat-icon mat-list-icon >filter_1</mat-icon>
+                  <span *ngIf="isExpanded" >Piso 1</span>
+                </mat-list-item>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor1']">
+              <mat-icon mat-list-icon >R</mat-icon>
+              <span *ngIf="isExpanded">Tiempo Real</span>
+            </mat-list-item>
+
+            <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor4/dia',4]">
+              <mat-icon mat-list-icon >D</mat-icon>
+              <span *ngIf="isExpanded" >Día</span>
+            </mat-list-item>
+
+            <mat-list-item appearance="fill" [routerLink]="['medidores/medidor4/mes',4]">
+              <mat-icon mat-list-icon >M</mat-icon>
+              <span *ngIf="isExpanded" >Mes</span>
+            </mat-list-item>
+
+            <mat-list-item appearance="fill" [routerLink]="['medidores/medidor4/anio',4]">
+              <mat-icon mat-list-icon >A</mat-icon>
+              <span *ngIf="isExpanded">Año</span>
+            </mat-list-item>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-list-item >
+                  <mat-icon mat-list-icon >filter_2</mat-icon>
+                  <span *ngIf="isExpanded" >Piso 2</span>
+                </mat-list-item>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor2']">
+              <mat-icon mat-list-icon >R</mat-icon>
+              <span *ngIf="isExpanded" >Tiempo Real</span>
+            </mat-list-item>
+
+            <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor2/dia',2]">
+              <mat-icon mat-list-icon >D</mat-icon>
+              <span *ngIf="isExpanded" >Día</span>
+            </mat-list-item>
+
+            <mat-list-item appearance="fill" [routerLink]="['medidores/medidor2/mes',2]">
+              <mat-icon mat-list-icon >M</mat-icon>
+              <span *ngIf="isExpanded" >Mes</span>
+            </mat-list-item>
+
+            <mat-list-item appearance="fill" [routerLink]="['medidores/medidor2/anio',2]">
+              <mat-icon mat-list-icon >A</mat-icon>
+              <span *ngIf="isExpanded">Año</span>
+            </mat-list-item>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-list-item class="icon-prin" >
+                  <mat-icon class="icon-prin" mat-list-icon >filter_3</mat-icon>
+                  <span *ngIf="isExpanded" >Piso 3</span>
+                </mat-list-item>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor3']">
+              <mat-icon mat-list-icon >R</mat-icon>
+              <span *ngIf="isExpanded">Tiempo Real</span>
+            </mat-list-item>
+
+            <mat-list-item  appearance="fill" [routerLink]="['medidores/medidor3/dia',3]">
+              <mat-icon mat-list-icon >D</mat-icon>
+              <span *ngIf="isExpanded" >Día</span>
+            </mat-list-item>
+
+            <mat-list-item appearance="fill" [routerLink]="['medidores/medidor3/mes',3]">
+              <mat-icon mat-list-icon >M</mat-icon>
+              <span *ngIf="isExpanded" >Mes</span>
+            </mat-list-item>
+
+            <mat-list-item appearance="fill" [routerLink]="['medidores/medidor3/anio',3]">
+              <mat-icon mat-list-icon >A</mat-icon>
+              <span *ngIf="isExpanded">Año</span>
+            </mat-list-item>
+          </mat-expansion-panel>
+
+          <mat-list-item  appearance="fill" [routerLink]="['medidores/simulacion']">
+            <mat-icon class="icon-simu" mat-list-icon >timeline</mat-icon>
+            <span *ngIf="isExpanded">Datos Simulación</span>
+          </mat-list-item>
+        </mat-accordion>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="content">
+
+      <div class="cabeza sticky-top ">
+        <mat-toolbar>
+          <h4>Monitoreo de KPI de gestión energética</h4>
+        </mat-toolbar>
+        <div class="server">
+          <p>Simulador</p>
+          <select  [(ngModel)]="estadoSimu" (change)="estado()">
+            <option value="1">Encendido</option>
+            <option value="2" selected>Apagado</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="salir()" >Salir</button>
       </div>
 
+
+      <router-outlet></router-outlet>
     </div>
 
-
-    <router-outlet></router-outlet>
-  </div>
-
-</mat-sidenav-container>
-
+  </mat-sidenav-container>
+</ng-template>
 
 
 
