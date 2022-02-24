@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Medidor } from '../models/medidor.model';
 import { FechaServices } from '../servicios/fecha.services';
 import { MedidorServices } from '../servicios/medidor-dia.services';
+import jsPDF from 'jspdf';
 
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-anio',
@@ -33,6 +35,32 @@ export class AnioComponent implements OnInit {
 
   anioSelec: string  = '2021';
   anio = [{to_char: 2021},{to_char: 2022}];
+  reporteD: any = [];
+
+  downloadPDF(){
+    const DATA : any = document.getElementById('htmlData');
+    const doc = new jsPDF('p' , 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3,
+    };
+
+    html2canvas(DATA, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}_reporte.pdf`);
+    });
+  }
 
   constructor(
     private _medidorService: MedidorServices,
@@ -48,6 +76,7 @@ export class AnioComponent implements OnInit {
     this.mostrarKw(this.anioSelec);
     this.mostrarOcupacion(this.anioSelec);
     this.getMedidorAnio(this.anioSelec);
+    this.reporte(this.anioSelec)
   }
 
   fechaEscogida(){
@@ -57,6 +86,7 @@ export class AnioComponent implements OnInit {
     this.mostrarKw(this.anioSelec);
     this.mostrarOcupacion(this.anioSelec);
     this.getMedidorAnio(this.anioSelec);
+    this.reporte(this.anioSelec)
   }
 
 
@@ -80,6 +110,20 @@ export class AnioComponent implements OnInit {
     }else{
       this.pisoMostrar = "Piso " + this.piso
     }
+  }
+
+  reporte(fecha: string){
+    this._medidorService.getMedidorMesReporte(fecha+"-01-01n"+fecha+"-12-31n"+this.piso).subscribe(data => {
+      if(Object.keys(data).length === 0){
+        console.log("no datos");
+      }else{
+        this.reporteD = data;
+        console.log(this.reporteD)
+        console.log(this.reporteD[0].voltajel1pro)
+      }
+    },error =>{
+      console.log(error);
+    })
   }
 
   mostrarKw(fecha: string){

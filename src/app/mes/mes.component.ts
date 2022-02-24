@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Medidor } from '../models/medidor.model';
 import { FechaServices } from '../servicios/fecha.services'
 import { MedidorServices } from '../servicios/medidor-dia.services';
+import jsPDF from 'jspdf';
 
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-mes',
@@ -34,6 +36,33 @@ export class MesComponent implements OnInit {
 
   pisoMostrar: string;
 
+  reporteD: any = [];
+
+  downloadPDF(){
+    const DATA : any = document.getElementById('htmlData');
+    const doc = new jsPDF('p' , 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3,
+    };
+
+    html2canvas(DATA, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}_reporte.pdf`);
+    });
+  }
+
   constructor(
         private _medidorService: MedidorServices,
         private _fechaServices: FechaServices,
@@ -46,6 +75,7 @@ export class MesComponent implements OnInit {
     this.pisoSelect()
     this.mostrarFecha();
     this.mostrarKw("2022-02-01","2022-02-28");// ver si se mopdifia
+    this.reporte("2022-02-01","2022-02-28")
     this.mostrarOcupacion("2022-02-01","2022-02-28");// ver si se mopdifia
     this.getMedidorMes("2022-02-01","2022-02-28");// chart.js
   }
@@ -62,6 +92,7 @@ export class MesComponent implements OnInit {
     this.mostrarKw(this.DateSelect+"-01",this.DateSelect+"-"+dia)
     this.mostrarOcupacion(this.DateSelect+"-01",this.DateSelect+"-"+dia);// ver si se mopdifia
     this.getMedidorMes(this.DateSelect+"-01",this.DateSelect+"-"+dia);// chart.js
+    this.reporte(this.DateSelect+"-01",this.DateSelect+"-"+dia)
   }
 
   pisoSelect(){
@@ -74,6 +105,21 @@ export class MesComponent implements OnInit {
       this.pisoMostrar = "Piso " + this.piso
     }
   }
+
+  reporte(fechaIni: string, fechaFin: string){
+    this._medidorService.getMedidorMesReporte(fechaIni+"n"+fechaFin+"n"+this.piso).subscribe(data => {
+      if(Object.keys(data).length === 0){
+        console.log("no datos");
+      }else{
+        this.reporteD = data;
+        console.log(this.reporteD)
+        console.log(this.reporteD[0].voltajel1pro)
+      }
+    },error =>{
+      console.log(error);
+    })
+  }
+
 
   mostrarFecha(){
     this._fechaServices.getFechasMes(this.piso+"").subscribe(data => {

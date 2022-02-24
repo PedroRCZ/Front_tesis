@@ -12,33 +12,137 @@
     </div>
   </div>
 
-  <div class="seccion-uno">
-    <div class="kw card">
-      <p class="titulo">Kw</p>
-      <p>{{ kw | number: '.1-2' }}</p>
+
+
+  <section id="htmlData">
+
+    <h3>Informe de Datos historiscos del día {{DateSelect}} y {{pisoMostrar}}</h3>
+    <div class="seccion-uno">
+      <div class="kw card">
+        <p class="titulo">Kw</p>
+        <p>{{ kw | number: '.1-2' }}</p>
+      </div>
+
+      <div class="precio-kw card">
+        <p class="titulo">Precio $ </p>
+        <p>{{ kwPrecio | number: '.1-2' }}</p>
+      </div>
+      <div class="ocupacion card">
+        <p class="titulo">Ocupación</p>
+        <p>{{ ocupacion }}</p>
+      </div>
     </div>
 
-    <div class="precio-kw card">
-      <p class="titulo">Precio $ </p>
-      <p>{{ kwPrecio | number: '.1-2' }}</p>
-    </div>
-    <div class="ocupacion card">
-      <p class="titulo">Ocupación</p>
-      <p>{{ ocupacion }}</p>
-    </div>
-  </div>
+    <br>
 
-  <br>
+    <div class="seccion-dos">
+      <div class="superficie card">
+        <p class="titulo">Superficie (m2)</p>
+        <p>{{ superficie }}</p>
+      </div>
+      <div class="kw-superficie card">
+        <p class="titulo">Kw/mes - m2</p>
+        <p>{{ kw_m2 | number: '.1-2'}}</p>
+      </div>
+    </div>
 
-  <div class="seccion-dos">
-    <div class="superficie card">
-      <p class="titulo">Superficie (m2)</p>
-      <p>{{ superficie }}</p>
+    <div >
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="tg-0pky" colspan="6">Resumen de Variables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky" colspan="2"></td>
+            <td class="tg-0lax">Voltaje</td>
+            <td class="tg-0pky">Intencidad</td>
+            <td class="tg-0pky">Potencia</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax" rowspan="3">Trifasico</td>
+            <td class="tg-0lax">máximo</td>
+            <td class="tg-0lax">{{reporteD[0].voltajetrimax | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadtrimax | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potenciatrimax | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">mínimo</td>
+            <td class="tg-0lax">{{reporteD[0].voltajetrimin | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadtrimin | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potenciatrimin | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">promedio</td>
+            <td class="tg-0lax">{{reporteD[0].voltajetripro | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadtripro | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potenciatripro | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax" rowspan="3">Línea 1</td>
+            <td class="tg-0lax">máximo</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel1max | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl1max | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial1max | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">mínimo</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel1min | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl1min | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial1min | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">promedio</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel1pro | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl1pro | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial1pro | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax" rowspan="3">Línea 2</td>
+            <td class="tg-0lax">máximo</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel2max | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl2max | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial2max | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax"> mínimo</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel2min | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl2min | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial2min | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">promedio</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel2pro | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl2pro | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial2pro | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax" rowspan="3">Línea 3</td>
+            <td class="tg-0lax">máximo</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel3max | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl3max | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial3max | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">mínimo</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel3min | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl3min | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial3min | number: '.1-2' }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">promedio</td>
+            <td class="tg-0lax">{{reporteD[0].voltajel3pro | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].intencidadl3pro | number: '.1-2' }}</td>
+            <td class="tg-0lax">{{reporteD[0].potencial3pro | number: '.1-2' }}</td>
+          </tr>
+        </tbody>
+        </table>
     </div>
-    <div class="kw-superficie card">
-      <p class="titulo">Kw/mes - m2</p>
-      <p>{{ kw_m2 | number: '.1-2'}}</p>
-    </div>
+  </section>
+
+  <div>
+    <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Reporte</button>
   </div>
 
   <br>
@@ -110,104 +214,6 @@
   </div>
 
 
-  <div id="htmlData">
-    <table class="tg">
-      <thead>
-        <tr>
-          <th class="tg-0pky" colspan="6">Resumen de Varuables</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="tg-0pky" colspan="2"></td>
-          <td class="tg-0lax">Voltaje</td>
-          <td class="tg-0pky">Intencidad</td>
-          <td class="tg-0pky">Potencia</td>
-          <td class="tg-0pky">Frecuencia</td>
-        </tr>
-        <tr>
-          <td class="tg-0lax" rowspan="3">Trifasico</td>
-          <td class="tg-0lax">maximo</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax" rowspan="12"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax">minimo</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax">promedio</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax" rowspan="3">Línea 1</td>
-          <td class="tg-0lax">maximo</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax">minimo</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax">promedio</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax" rowspan="3">Línea 2</td>
-          <td class="tg-0lax">maximo</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax"> minimo</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax">promedio</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax" rowspan="3">Línea 3</td>
-          <td class="tg-0lax">maximo</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax">minimo</td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-          <td class="tg-0lax"></td>
-        </tr>
-        <tr>
-          <td class="tg-0lax">promedio</td>
-          <td class="tg-0lax">  </td>
-          <td class="tg-0lax">2</td>
-          <td class="tg-0lax">3</td>
-        </tr>
-      </tbody>
-      </table>
-  </div>
 
-  <div>
-    <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Reporte</button>
-  </div>
 
 </div>

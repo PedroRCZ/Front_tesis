@@ -45,6 +45,8 @@ export class DiaComponent implements OnInit {
   fechaMax: string;
   fechaMin: string;
 
+  reporteD: any = [];
+
 
 
 
@@ -69,7 +71,7 @@ export class DiaComponent implements OnInit {
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
       return doc;
     }).then((docResult) => {
-      docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+      docResult.save(`${new Date().toISOString()}_reporte.pdf`);
     });
   }
 
@@ -81,15 +83,13 @@ export class DiaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.piso = this.route.snapshot.params['id'];
     this.pisoSelect()
     this.mostrarFecha();
     this.mostrarKw("2022-01-25");
     this.mostrarOcupacion("2022-01-25");
+    this.reporte("2022-01-25")
     this.getMedidorDia("2022-01-25");// chart.js
-
-
   }
 
   DateSelect : any;
@@ -99,6 +99,7 @@ export class DiaComponent implements OnInit {
     this.graphIntesidad= [];
     this.graphPotencia = [];
     this.mostrarKw(this.DateSelect);
+    this.reporte(this.DateSelect)
     this.mostrarOcupacion(this.DateSelect);
     this.getMedidorDia(this.DateSelect);
   }
@@ -122,6 +123,20 @@ export class DiaComponent implements OnInit {
         this.kw = data[0].dato;
         this.kwPrecio = data[0].dato * 1.02;
         this.mostrarSuperficie()
+      }
+    },error =>{
+      console.log(error);
+    })
+  }
+
+  reporte(fecha: string){
+    this._medidorService.getMedidorDiaReporte(fecha+"n"+this.piso).subscribe(data => {
+      if(Object.keys(data).length === 0){
+        console.log("no datos");
+      }else{
+        this.reporteD = data;
+        console.log(this.reporteD)
+        console.log(this.reporteD[0].voltajel1pro)
       }
     },error =>{
       console.log(error);
@@ -161,7 +176,6 @@ export class DiaComponent implements OnInit {
       }else{
         this.fechaMax = data[0].max;
         this.fechaMin = data[0].min;
-        console.log(this.fechaMax + " " + this.fechaMin)
       }
     })
   }
@@ -174,7 +188,6 @@ export class DiaComponent implements OnInit {
         console.log("no datos");
       }else{
         this.listMedidor = data;
-        console.log(data)
         this.fecha = this.listMedidor.map((listMedidor: any) => listMedidor.time)
         this.voltaje = this.listMedidor.map((listMedidor: any) => listMedidor.v3ph)
         this.intencidad = this.listMedidor.map((listMedidor: any) => listMedidor.i3ph)
@@ -306,13 +319,6 @@ export class DiaComponent implements OnInit {
 
           }
         };
-
-
-
-
-
-
-
       }
     },error =>{
       console.log(error);

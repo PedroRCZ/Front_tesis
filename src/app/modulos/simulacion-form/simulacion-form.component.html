@@ -2,25 +2,46 @@
 <div>
   <p>hola</p>
 
-  <form  class="item"  #f="ngForm" (ngSubmit)="f.form.valid && onGuardar()" >
-    <input type="text" required name="v3ph" placeholder="V trifasico" [(ngModel)]="v3ph">
-    <input type="text" required name="vl1" placeholder="V trifasico" [(ngModel)]="vl1">
-    <input type="text" required name="vl2" placeholder="V trifasico" [(ngModel)]="vl2">
-    <input type="text" required name="vl3" placeholder="V trifasico" [(ngModel)]="vl3">
-    <input type="text" required name="i3ph" placeholder="V trifasico" [(ngModel)]="i3ph">
-    <input type="text" required name="il1" placeholder="V trifasico" [(ngModel)]="il1">
-    <input type="text" required name="il2" placeholder="V trifasico" [(ngModel)]="il2">
-    <input type="text" required name="il3" placeholder="V trifasico" [(ngModel)]="il3">
-    <input type="text" required name="pf3ph" placeholder="V trifasico" [(ngModel)]="pf3ph">
-    <input type="text" required name="pfl1" placeholder="V trifasico" [(ngModel)]="pfl1">
-    <input type="text" required name="pfl2" placeholder="V trifasico" [(ngModel)]="pfl2">
-    <input type="text" required name="pfl3" placeholder="V trifasico" [(ngModel)]="pfl3">
-    <input type="text" required name="ae3ph" placeholder="V trifasico" [(ngModel)]="ae3ph">
-    <input type="text" required name="re3ph" placeholder="V trifasico" [(ngModel)]="re3ph">
-    <input type="text" required name="se3ph" placeholder="V trifasico" [(ngModel)]="se3ph">
-    <input type="text" required name="piso" placeholder="V trifasico" [(ngModel)]="piso">
-    <input type="text" required name="id" placeholder="V trifasico" [(ngModel)]="id">
-    <button type="submit" style="cursor: pointer;" >++</button>
+  <form [formGroup]="editarFrom" (ngSubmit)="onEditar(editarFrom.value)" >
+    <div>
+      <label>Piso:</label>
+      <input type="number" class="form-control" name="piso" placeholder="piso" formControlName="piso">
+    </div>
+
+      <input type="number" class="form-control" name="id" placeholder="id" formControlName="id">
+      <input type="number" class="form-control" name="v3ph" placeholder="v3ph" formControlName="v3ph">
+      <input type="number" class="form-control" name="vl1" placeholder="vl1" formControlName="vl1">
+      <input type="number" class="form-control" name="vl2" placeholder="vl2" formControlName="vl2">
+      <input type="number" class="form-control" name="vl3" placeholder="vl3" formControlName="vl3">
+      <input type="number" class="form-control" name="i3ph" placeholder="i3ph" formControlName="i3ph">
+      <input type="number" class="form-control" name="il1" placeholder="il1" formControlName="il1">
+      <input type="number" class="form-control" name="il2" placeholder="il2" formControlName="il2">
+      <input type="number" class="form-control" name="il3" placeholder="il3" formControlName="il3">
+      <input type="number" class="form-control" name="pf3ph" placeholder="pf3ph" formControlName="pf3ph">
+      <input type="number" class="form-control" name="pfl1" placeholder="pfl1" formControlName="pfl1">
+      <input type="number" class="form-control" name="pfl2" placeholder="pfl2" formControlName="pfl2">
+      <input type="number" class="form-control" name="pfl3" placeholder="pfl3" formControlName="pfl3">
+      <input type="number" class="form-control" name="ap3ph" placeholder="ap3ph" formControlName="ap3ph">
+      <input type="number" class="form-control" name="apl1" placeholder="apl1" formControlName="apl1">
+      <input type="number" class="form-control" name="apl2" placeholder="apl2" formControlName="apl2">
+      <input type="number" class="form-control" name="apl3" placeholder="apl3" formControlName="apl3">
+      <input type="number" class="form-control" name="rp3ph" placeholder="rp3ph" formControlName="rp3ph">
+      <input type="number" class="form-control" name="rpl1" placeholder="rpl1" formControlName="rpl1">
+      <input type="number" class="form-control" name="rpl2" placeholder="rpl2" formControlName="rpl2">
+      <input type="number" class="form-control" name="rpl3" placeholder="rpl3" formControlName="rpl3">
+      <input type="number" class="form-control" name="freq" placeholder="freq" formControlName="freq">
+      <input type="number" class="form-control" name="ae3ph" placeholder="ae3ph" formControlName="ae3ph">
+      <input type="number" class="form-control" name="ael1" placeholder="ael1" formControlName="ael1">
+      <input type="number" class="form-control" name="ael2" placeholder="ael2" formControlName="ael2">
+      <input type="number" class="form-control" name="ael3" placeholder="ael3" formControlName="ael3">
+      <input type="number" class="form-control" name="re3ph" placeholder="re3ph" formControlName="re3ph">
+      <input type="number" class="form-control" name="rel1" placeholder="rel1" formControlName="rel1">
+      <input type="number" class="form-control" name="rel2" placeholder="rel2" formControlName="rel2">
+      <input type="number" class="form-control" name="rel3" placeholder="rel3" formControlName="rel3">
+
+      <button *ngIf="btn" type="submit" class="btn btn-primary" style="cursor: pointer;" >Editar</button>
+      <button *ngIf="btn"  type="button" class="btn btn-danger" (click)="eliminar()" style="cursor: pointer;" >Eliminar</button>
+      <button *ngIf="!btn" type="button" class="btn btn-success" (click)="onGuardar(editarFrom.value)" style="cursor: pointer;" >Guardar</button>
   </form>
 
 </div>

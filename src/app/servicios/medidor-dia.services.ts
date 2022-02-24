@@ -42,4 +42,13 @@ export class MedidorServices{
     return this.http.get(this.url + "aniocupacion/" + id);
   }
 
+  getMedidorDiaReporte(id: string): Observable <any>{
+    return this.http.get(this.url + "reporte/dia/" + id);
+  }
+
+  getMedidorMesReporte(id: string): Observable <any>{
+    return this.http.get(this.url + "reporte/mes/" + id);
+  }
+
+
 }

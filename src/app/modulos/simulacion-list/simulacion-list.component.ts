@@ -17,6 +17,7 @@ export class SimulacionListComponent implements OnInit {
 
   medidorSelec: string = "1";
   listMedidor: Medidores[] = [];
+  id = 0;
 
   ngOnInit(): void {
     this.medidor();
@@ -29,13 +30,16 @@ export class SimulacionListComponent implements OnInit {
         console.log("no datos");
       }else{
         this.listMedidor = data;
-        console.log(this.listMedidor)
       }
     })
   }
 
   onGuardar(){
-      this.router.navigate(['medidores/agregar'])
+    this.router.navigate(['medidores/agregar'])
+  }
+
+  editarMedidor(id: Medidores){
+    this.router.navigate(['medidores/agregar',id])
   }
 
 }

@@ -33,6 +33,7 @@ const routes: Routes = [
   {path: 'medidores/medidor4/anio/:id', component:AnioComponent},
   {path: 'medidores/simulacion', component:SimulacionListComponent},
   {path: 'medidores/agregar', component:SimulacionFormComponent},
+  {path: 'medidores/agregar/:id', component:SimulacionFormComponent},
 ];
 
 @NgModule({

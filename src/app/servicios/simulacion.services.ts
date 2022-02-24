@@ -20,12 +20,15 @@ export class SimulacionServices{
     return this.http.get(this.url + "simular/datos/" + id);
   }
 
-  agregarMedidor( medidor: Medidores): Observable <any>{
-    return this.http.get(this.url + "/agregar" + medidor)
+  agregarMedidor(medidor: Medidores): Observable <any>{
+    return this.http.post(this.url + "simular/agregar", medidor)
   }
 
   editMedidor(id: number, medidor: Medidores): Observable <any>{
-    return this.http.put(this.url + id , medidor);
+    return this.http.put(this.url +"simular/editar/" + id , medidor);
   }
 
+  delectMedidor(id: string): Observable <any>{
+    return this.http.delete(this.url +"simular/eliminar/" + id);
+  }
 }

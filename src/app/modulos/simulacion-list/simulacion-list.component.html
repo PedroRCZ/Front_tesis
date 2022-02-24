@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor = "let cliente of listMedidor">
+          <tr *ngFor = "let cliente of listMedidor" (click)="editarMedidor(cliente)" >
             <th scope="row">{{cliente.piso}}</th>
             <th scope="row">{{cliente.id}}</th>
             <td>{{cliente.v3ph}}</td>
