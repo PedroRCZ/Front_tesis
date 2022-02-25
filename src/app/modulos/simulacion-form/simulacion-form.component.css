@@ -1,0 +1,28 @@
+form div{
+  display: flex;
+}
+
+form div label{
+  display: block;
+  width: 50%;
+  padding: 1em 5em;
+}
+
+form div input{
+  margin: 0.25em;
+  margin-right: 1em;
+}
+
+.card{
+  margin: 1em 7em;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.botones{
+  width: 100%;
+  justify-content: center;
+}
+button{
+  margin: 10px;
+}

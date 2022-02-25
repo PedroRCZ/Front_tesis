@@ -1,47 +1,136 @@
 
-<div>
-  <p>hola</p>
-
+<div class="card">
   <form [formGroup]="editarFrom" (ngSubmit)="onEditar(editarFrom.value)" >
     <div>
       <label>Piso:</label>
       <input type="number" class="form-control" name="piso" placeholder="piso" formControlName="piso">
     </div>
-
+    <div>
+      <label>Identificador:</label>
       <input type="number" class="form-control" name="id" placeholder="id" formControlName="id">
+    </div>
+    <div>
+      <label>Voltaje trifasico:</label>
       <input type="number" class="form-control" name="v3ph" placeholder="v3ph" formControlName="v3ph">
+    </div>
+    <div>
+      <label>Voltaje por linea 1:</label>
       <input type="number" class="form-control" name="vl1" placeholder="vl1" formControlName="vl1">
+    </div>
+    <div>
+      <label>Voltaje por linea 2:</label>
       <input type="number" class="form-control" name="vl2" placeholder="vl2" formControlName="vl2">
+    </div>
+    <div>
+      <label>Voltaje por linea 3:</label>
       <input type="number" class="form-control" name="vl3" placeholder="vl3" formControlName="vl3">
+    </div>
+    <div>
+      <label>Intensidad trifasica:</label>
       <input type="number" class="form-control" name="i3ph" placeholder="i3ph" formControlName="i3ph">
+    </div>
+    <div>
+      <label>Intensidad por linea 1:</label>
       <input type="number" class="form-control" name="il1" placeholder="il1" formControlName="il1">
+    </div>
+    <div>
+      <label>Intensidad por linea 2:</label>
       <input type="number" class="form-control" name="il2" placeholder="il2" formControlName="il2">
+    </div>
+    <div>
+      <label>Intensidad por linea 3:</label>
       <input type="number" class="form-control" name="il3" placeholder="il3" formControlName="il3">
+    </div>
+    <div>
+      <label>Factor de potencia trifasico:</label>
       <input type="number" class="form-control" name="pf3ph" placeholder="pf3ph" formControlName="pf3ph">
+    </div>
+    <div>
+      <label>Factor de potencia por linea 1:</label>
       <input type="number" class="form-control" name="pfl1" placeholder="pfl1" formControlName="pfl1">
+    </div>
+    <div>
+      <label>Factor de potencia por linea 2:</label>
       <input type="number" class="form-control" name="pfl2" placeholder="pfl2" formControlName="pfl2">
+    </div>
+    <div>
+      <label>Factor de potencia por linea 3:</label>
       <input type="number" class="form-control" name="pfl3" placeholder="pfl3" formControlName="pfl3">
+    </div>
+    <div>
+      <label>Potencia Activa trifasica:</label>
       <input type="number" class="form-control" name="ap3ph" placeholder="ap3ph" formControlName="ap3ph">
+    </div>
+    <div>
+      <label>Potencia Activa por linea 1:</label>
       <input type="number" class="form-control" name="apl1" placeholder="apl1" formControlName="apl1">
+    </div>
+    <div>
+      <label>Potencia Activa por linea 2:</label>
       <input type="number" class="form-control" name="apl2" placeholder="apl2" formControlName="apl2">
+    </div>
+    <div>
+      <label>Potencia Activa por linea 3:</label>
       <input type="number" class="form-control" name="apl3" placeholder="apl3" formControlName="apl3">
+    </div>
+    <div>
+      <label>Potencia Reactiva trifasica:</label>
       <input type="number" class="form-control" name="rp3ph" placeholder="rp3ph" formControlName="rp3ph">
+    </div>
+    <div>
+      <label>Potencia Activa por linea 1:</label>
       <input type="number" class="form-control" name="rpl1" placeholder="rpl1" formControlName="rpl1">
+    </div>
+    <div>
+      <label>Potencia Activa por linea 2:</label>
       <input type="number" class="form-control" name="rpl2" placeholder="rpl2" formControlName="rpl2">
+    </div>
+    <div>
+      <label>Potencia Activa por linea 3:</label>
       <input type="number" class="form-control" name="rpl3" placeholder="rpl3" formControlName="rpl3">
+    </div>
+    <div>
+      <label>Frecuencia:</label>
       <input type="number" class="form-control" name="freq" placeholder="freq" formControlName="freq">
+    </div>
+    <div>
+      <label>Energia Activa trifasica: </label>
       <input type="number" class="form-control" name="ae3ph" placeholder="ae3ph" formControlName="ae3ph">
+    </div>
+    <div>
+      <label>Energia Activa por linea 1:</label>
       <input type="number" class="form-control" name="ael1" placeholder="ael1" formControlName="ael1">
+    </div>
+    <div>
+      <label>Energia Activa por linea 2:</label>
       <input type="number" class="form-control" name="ael2" placeholder="ael2" formControlName="ael2">
+    </div>
+    <div>
+      <label>Energia Activa por linea 3:</label>
       <input type="number" class="form-control" name="ael3" placeholder="ael3" formControlName="ael3">
+    </div>
+    <div>
+      <label>Energia Reactiva trifasica: </label>
       <input type="number" class="form-control" name="re3ph" placeholder="re3ph" formControlName="re3ph">
+    </div>
+    <div>
+      <label>Energia Reactiva por linea 1:</label>
       <input type="number" class="form-control" name="rel1" placeholder="rel1" formControlName="rel1">
+    </div>
+    <div>
+      <label>Energia Reactiva por linea 2:</label>
       <input type="number" class="form-control" name="rel2" placeholder="rel2" formControlName="rel2">
+    </div>
+    <div>
+      <label>Energia Reactiva por linea 3:</label>
       <input type="number" class="form-control" name="rel3" placeholder="rel3" formControlName="rel3">
-
+    </div>
+    <div class="botones">
       <button *ngIf="btn" type="submit" class="btn btn-primary" style="cursor: pointer;" >Editar</button>
       <button *ngIf="btn"  type="button" class="btn btn-danger" (click)="eliminar()" style="cursor: pointer;" >Eliminar</button>
       <button *ngIf="!btn" type="button" class="btn btn-success" (click)="onGuardar(editarFrom.value)" style="cursor: pointer;" >Guardar</button>
+    </div>
+
   </form>
 
 </div>

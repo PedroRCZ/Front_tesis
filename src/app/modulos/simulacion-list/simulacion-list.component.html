@@ -1,14 +1,15 @@
 <div class="cuerpo">
 
   <div class="cabeza">
-    <p>simulacion-list works!</p>
+    <button class="btn btn-info" type="submit" style="cursor: pointer;" (click)="onGuardar()" >Agregar Datos</button>
+
     <select  [(ngModel)]="medidorSelec" (change)="medidor()">
       <option value="1">Medidor 1</option>
       <option value="2">Medidor 2</option>
       <option value="3">Medidor 3</option>
     </select>
   </div>
-  <button class="btn btn-info" type="submit" style="cursor: pointer;" (click)="onGuardar()" >Agregar Datos</button>
+
   <div>
     <table class="table">
         <thead>
