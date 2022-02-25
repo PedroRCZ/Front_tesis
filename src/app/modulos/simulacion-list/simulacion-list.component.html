@@ -16,12 +16,12 @@
           <tr>
             <th scope="col">Medidor</th>
             <th scope="col">id</th>
-            <th scope="col">voltaje trifasico</th>
-            <th scope="col">Voltaje linea 1</th>
-            <th scope="col">Voltaje linea 2</th>
-            <th scope="col">Voltaje linea 3</th>
-            <th scope="col">Intencidad trifasica</th>
-            <th scope="col">Energia Activa</th>
+            <th scope="col">Voltaje trifásico</th>
+            <th scope="col">Intencidad trifásica</th>
+            <th scope="col">Potencia Activa trifásica</th>
+            <th scope="col">Potencia Reactiva trifásica</th>
+            <th scope="col">Energia Activa trifásica</th>
+            <th scope="col">Energia Reactiva trifásica</th>
           </tr>
         </thead>
         <tbody>
@@ -29,10 +29,10 @@
             <th scope="row">{{cliente.piso}}</th>
             <th scope="row">{{cliente.id}}</th>
             <td>{{cliente.v3ph}}</td>
-            <td>{{cliente.vl1}}</td>
-            <td>{{cliente.vl2}}</td>
-            <td>{{cliente.vl3}}</td>
             <td>{{cliente.i3ph}}</td>
+            <td>{{cliente.ap3ph}}</td>
+            <td>{{cliente.rp3ph}}</td>
+            <td>{{cliente.re3ph}}</td>
             <td>{{cliente.ae3ph}}</td>
           </tr>
         </tbody>

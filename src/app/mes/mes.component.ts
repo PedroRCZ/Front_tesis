@@ -184,7 +184,7 @@ export class MesComponent implements OnInit {
         this.fecha = this.listMedidor.map((listMedidor: any) => listMedidor.to_char)
         this.voltaje = this.listMedidor.map((listMedidor: any) => listMedidor.v3ph)
         this.intencidad = this.listMedidor.map((listMedidor: any) => listMedidor.i3ph)
-        this.pf3ph = this.listMedidor.map((listMedidor: any) => listMedidor.pf3ph)
+        this.pf3ph = this.listMedidor.map((listMedidor: any) => listMedidor.ap3ph)
         delay(300);
 
         this.graph = {
@@ -194,7 +194,7 @@ export class MesComponent implements OnInit {
                 type: 'box' },
           ],
           layout: {
-            title: 'A Fancy Plot',
+            title: 'Voltaje Trifásico',
             /*yaxis: {
               range: [227.5, 230]
             }*/
@@ -208,7 +208,7 @@ export class MesComponent implements OnInit {
                 type: 'box' },
           ],
           layout: {
-            title: 'A Fancy Plot',
+            title: 'Intencidad Trifásica',
             /*yaxis: {
               range: [227.5, 230]
             }*/
@@ -222,7 +222,7 @@ export class MesComponent implements OnInit {
                 type: 'box' },
           ],
           layout: {
-            title: 'A Fancy Plot',
+            title: 'Potencia Activa Trifásica',
             /*yaxis: {
               range: [227.5, 230]
             }*/

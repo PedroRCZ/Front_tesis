@@ -194,11 +194,13 @@ export class DiaComponent implements OnInit {
         this.intencidad = this.listMedidor.map((listMedidor: any) => listMedidor.i3ph)
         this.pf3ph = this.listMedidor.map((listMedidor: any) => listMedidor.pf3ph)
 
+        console.log(this.fecha)
+
         delay(300);
 
         this.graph = {
           data: [
-              { x: this.fecha ,
+              { x: this.fecha,
                 y: this.voltaje,
                 type: 'line' },
           ],
@@ -242,7 +244,7 @@ export class DiaComponent implements OnInit {
           layout: {
             title: 'Intensidad Trifasica',
             yaxis: {
-              range: [Math.max.apply(null, this.intencidad), Math.min.apply(null, this.intencidad)]
+              range: [Math.min.apply(null, this.intencidad), Math.max.apply(null, this.intencidad)]
             }
           }
         };
@@ -265,7 +267,7 @@ export class DiaComponent implements OnInit {
           layout: {
             title: 'Intensidad Por linea',
             yaxis: {
-              range: [Math.max.apply(null, this.intencidad), Math.min.apply(null, this.intencidad)]
+              range: [Math.min.apply(null, this.intencidad), Math.max.apply(null, this.intencidad)]
             }
           }
         };
@@ -279,8 +281,8 @@ export class DiaComponent implements OnInit {
           layout: {
             title: 'Potencia Activa Trifasica',
             yaxis: {
-              range: [Math.max.apply(this.listMedidor.map((listMedidor: any) => listMedidor.ap3ph)),
-                Math.min.apply(this.listMedidor.map((listMedidor: any) => listMedidor.ap3ph))]
+              range: [Math.min.apply(this.listMedidor.map((listMedidor: any) => listMedidor.ap3ph)),
+                Math.max.apply(this.listMedidor.map((listMedidor: any) => listMedidor.ap3ph))]
             }
           }
         };
@@ -303,8 +305,8 @@ export class DiaComponent implements OnInit {
           layout: {
             title: 'Potencia Activa Por Línea',
             yaxis: {
-              range: [Math.max.apply(this.listMedidor.map((listMedidor: any) => listMedidor.apl1)),
-                Math.min.apply(this.listMedidor.map((listMedidor: any) => listMedidor.apl2))]
+              range: [Math.min.apply(this.listMedidor.map((listMedidor: any) => listMedidor.apl1)),
+                Math.max.apply(this.listMedidor.map((listMedidor: any) => listMedidor.apl2))]
             }
           }
         };
